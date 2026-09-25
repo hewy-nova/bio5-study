@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>BIO 5 Term Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* ================= CLAUDE PALETTE ================= */
+:root{
+  --bg:#FAF9F5;
+  --surface:#FFFFFF;
+  --surface-2:#F0EEE6;
+  --surface-3:#E9E6DC;
+  --ink:#191917;
+  --ink-2:#3D3D3A;
+  --muted:#73706A;
+  --rule:#E3E0D7;
+  --rule-2:#D5D1C5;
+  --accent:#C15F3C;
+  --accent-hi:#D97757;
+  --accent-soft:#F7EDE7;
+  --accent-rule:#E8C7B6;
+  --shadow:0 1px 2px rgba(25,25,23,.04), 0 12px 28px -22px rgba(25,25,23,.30);
+
+  --src-book:#4A6D8C; --src-book-soft:#EAF0F5;
+  --src-lab:#5F7A55;  --src-lab-soft:#EDF2EA;
+  --src-lec:#B0703A;  --src-lec-soft:#F8EFE4;
+
+  --alert:#A34A2C; --alert-soft:#FAEDE7; --alert-rule:#E3C0AE;
+
+  --base-a:#B0603A; --base-t:#4F7A6B; --base-g:#7A5B8C; --base-c:#4A6D8C;
+  --chip-ink:#FFFFFF;
+  --coding:#DCC08A; --template:#C5C1B4;
+
+  --f-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-body:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#262624;
+    --surface:#30302E;
+    --surface-2:#2A2A28;
+    --surface-3:#3A3A37;
+    --ink:#F5F4EE;
+    --ink-2:#E3E1D9;
+    --muted:#A29E93;
+    --rule:#403F3B;
+    --rule-2:#4C4B46;
+    --accent:#E0906F;
+    --accent-hi:#D97757;
+    --accent-soft:#3A2B23;
+    --accent-rule:#5C4335;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 28px -22px rgba(0,0,0,.9);
+    --src-book:#8FB3CE; --src-book-soft:#233039;
+    --src-lab:#95B389;  --src-lab-soft:#26302A;
+    --src-lec:#DDA774;  --src-lec-soft:#352A1F;
+    --alert:#E09578; --alert-soft:#3A2620; --alert-rule:#5E3B2C;
+    --base-a:#DC9A70; --base-t:#7FBBA8; --base-g:#B79BD0; --base-c:#8FB3CE;
+    --chip-ink:#262624;
+    --coding:#B99A5E; --template:#6E6C65;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#262624; --surface:#30302E; --surface-2:#2A2A28; --surface-3:#3A3A37;
+  --ink:#F5F4EE; --ink-2:#E3E1D9; --muted:#A29E93; --rule:#403F3B; --rule-2:#4C4B46;
+  --accent:#E0906F; --accent-hi:#D97757; --accent-soft:#3A2B23; --accent-rule:#5C4335;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 28px -22px rgba(0,0,0,.9);
+  --src-book:#8FB3CE; --src-book-soft:#233039;
+  --src-lab:#95B389;  --src-lab-soft:#26302A;
+  --src-lec:#DDA774;  --src-lec-soft:#352A1F;
+  --alert:#E09578; --alert-soft:#3A2620; --alert-rule:#5E3B2C;
+  --base-a:#DC9A70; --base-t:#7FBBA8; --base-g:#B79BD0; --base-c:#8FB3CE;
+  --chip-ink:#262624;
+  --coding:#B99A5E; --template:#6E6C65;
+}
+
+*{box-sizing:border-box}
+/* Text selection: white ground, black ink, in both themes. Only colour and
+   background-color are honoured on ::selection, so nothing else is set here. */
+::selection{background:#FFFFFF;color:#000000}
+::-moz-selection{background:#FFFFFF;color:#000000}
+body{margin:0;background:var(--bg);color:var(--ink-2);font-family:var(--f-body);font-size:1rem;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px 100px}
+
+/* ================= MASTHEAD ================= */
+.masthead{padding:48px 0 24px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 13px}
+.masthead h1{font-family:var(--f-display);font-weight:600;font-size:2.55rem;line-height:1.08;letter-spacing:-.02em;margin:0 0 13px;color:var(--ink);text-wrap:balance}
+.masthead .lede{margin:0;max-width:62ch;color:var(--muted);font-size:1.06rem;line-height:1.55}
+.meta-row{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:18px;font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.meta-row span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--accent-hi);flex:none}
+
+/* ================= GLANCE ================= */
+.glance{display:grid;gap:11px;margin:24px 0 30px}
+@media(min-width:760px){.glance{grid-template-columns:1.45fr 1fr}}
+.gcard.deadlines{border-color:var(--accent-rule)}
+.gcard.deadlines .gh{color:var(--accent)}
+ol.dl{list-style:none;margin:0;padding:0;max-width:none}
+ol.dl li{display:grid;grid-template-columns:1fr;gap:2px;padding:10px 0;border-bottom:1px dashed var(--rule);margin:0;font-size:.875rem}
+@media(min-width:480px){ol.dl li{grid-template-columns:112px minmax(0,1fr);gap:14px;align-items:baseline}}
+ol.dl li:first-child{padding-top:0}
+ol.dl li:last-child{border-bottom:0;padding-bottom:0}
+ol.dl .when{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);line-height:1.4}
+ol.dl .when .t{font-size:.72rem;opacity:.8}
+ol.dl li.hard .when{color:var(--accent)}
+ol.dl .what{line-height:1.5}
+ol.dl .fine{color:var(--muted);font-size:.8125rem}
+.gcard{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:16px 18px}
+.gcard .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.gcard ul{margin:0;padding-left:1.05em;font-size:.875rem}
+.gcard li{margin-bottom:5px}
+.gcard.due{border-color:var(--accent-rule);background:var(--accent-soft)}
+.gcard.due .gh{color:var(--accent)}
+.gcard .when{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+
+/* ================= TABS ================= */
+.tabbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:stretch;
+  background:var(--bg);
+  border-bottom:1px solid var(--rule);
+  margin:0 0 26px;
+  padding-top:6px;
+}
+.tabbar .inner{flex:1;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.backlink{
+  display:inline-flex;align-items:center;gap:8px;flex:none;text-decoration:none;
+  font:inherit;font-size:.9375rem;font-weight:500;color:var(--muted);
+  padding:12px 15px 13px 2px;margin-right:10px;
+  border-right:1px solid var(--rule);
+  transition:color .15s;
+}
+.backlink:hover,.backlink:focus-visible{color:var(--accent)}
+.backlink .arw{font-family:var(--f-mono);font-size:1.05rem;line-height:1;transition:transform .15s}
+.backlink:hover .arw{transform:translateX(-2px)}
+@media(max-width:520px){
+  .backlink{padding-right:11px;margin-right:8px}
+  .backlink .btxt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+.tabbar .inner::-webkit-scrollbar{display:none}
+.tabbar button{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font:inherit;font-size:.9375rem;font-weight:500;color:var(--muted);
+  padding:12px 15px 13px;border-bottom:2px solid transparent;
+  white-space:nowrap;border-radius:8px 8px 0 0;transition:color .15s,background .15s;
+}
+.tabbar button:hover{color:var(--ink);background:var(--surface-2)}
+.tabbar button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent-hi);background:none}
+.tabbar button .tnum{font-family:var(--f-mono);font-size:.74rem;opacity:.7;margin-right:7px}
+[role="tabpanel"][hidden]{display:none}
+
+/* jump chips */
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:0;list-style:none;max-width:none}
+.jump li{margin:0}
+.jump a{
+  display:inline-block;text-decoration:none;font-family:var(--f-mono);font-size:.78rem;
+  color:var(--muted);border:1px solid var(--rule);background:var(--surface);
+  padding:4px 10px;border-radius:99px;
+}
+.jump a:hover{border-color:var(--accent-rule);color:var(--accent);background:var(--accent-soft)}
+
+/* panel intro */
+.pintro{margin:0 0 22px}
+.pintro h2{font-family:var(--f-display);font-weight:600;font-size:1.9rem;line-height:1.15;letter-spacing:-.015em;margin:0 0 8px;color:var(--ink);text-wrap:balance}
+.pintro p{margin:0;color:var(--muted);max-width:66ch;font-size:.9688rem}
+
+/* ================= SOURCE TAGS ================= */
+.srcs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;padding:0;list-style:none;max-width:none}
+.srcs li{margin:0}
+.src{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid var(--rule);background:var(--surface-2);color:var(--muted);
+}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.src.book{color:var(--src-book);background:var(--src-book-soft);border-color:transparent}
+.src.lab{color:var(--src-lab);background:var(--src-lab-soft);border-color:transparent}
+.src.lec{color:var(--src-lec);background:var(--src-lec-soft);border-color:transparent}
+
+/* ================= CARDS ================= */
+.sect,.topic,.card,.exam,.plan,.vocab{
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--shadow);scroll-margin-top:76px;margin:0 0 14px;
+}
+.sect,.card{padding:26px 28px 28px}
+.exam{padding:22px 24px}
+.topic,.plan,.vocab{overflow:hidden}
+.sect-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.sect h2,.topic h2,.card>h2{font-family:var(--f-display);font-weight:600;font-size:1.5rem;letter-spacing:-.012em;line-height:1.2;margin:0;color:var(--ink);text-wrap:balance}
+.card>h2{margin-bottom:14px}
+.sect h2 .n{font-family:var(--f-mono);font-size:.6em;color:var(--accent);margin-right:.55em;letter-spacing:0}
+.pages{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
+.cnum,.tnum{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 5px}
+.topic>header{padding:19px 24px 15px;border-bottom:1px solid var(--rule)}
+.topic h2 span{font-family:var(--f-body);font-size:.8125rem;font-weight:500;color:var(--muted);letter-spacing:.03em;margin-left:10px;white-space:nowrap}
+.exam h3,.card h3,.sect h3,.topic h3{
+  font-family:var(--f-body);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin:24px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--rule);
+}
+.exam>h3:first-child{margin-top:0;font-family:var(--f-display);font-size:1.15rem;font-weight:600;letter-spacing:-.008em;text-transform:none;color:var(--ink);border-bottom:0;padding-bottom:0;margin-bottom:10px}
+.sect h3:first-of-type,.card h3:first-of-type{margin-top:0}
+p{max-width:70ch}
+.sect p,.card p{margin:0 0 13px}
+.exam p{margin:0 0 10px}
+ul,ol{margin:0 0 13px;padding-left:1.25em;max-width:70ch}
+li{margin-bottom:6px}
+li:last-child{margin-bottom:0}
+.exam ul,.exam ol{font-size:.9375rem;margin-bottom:0}
+strong{font-weight:600;color:var(--ink)}
+
+/* ================= INNER BLOCKS ================= */
+.bigidea{margin:15px 0 20px;padding:14px 17px;border-left:3px solid var(--accent-hi);background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:1.05rem;line-height:1.5;font-family:var(--f-display);color:var(--ink)}
+.bigidea b{font-family:var(--f-body);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;font-weight:600}
+ul.outline{margin:0;padding-left:1.15em;max-width:70ch}
+ul.outline>li{margin-bottom:9px}
+ul.outline ul{margin:7px 0 0;padding-left:1.1em}
+ul.outline ul li{margin-bottom:5px;color:var(--muted)}
+ul.outline ul li strong{color:var(--ink)}
+dl.terms{margin:0;display:grid;gap:0;max-width:72ch}
+dl.terms div{padding:11px 0;border-bottom:1px dashed var(--rule);display:grid;grid-template-columns:1fr;gap:2px}
+dl.terms div:last-child{border-bottom:0}
+@media (min-width:640px){dl.terms div{grid-template-columns:196px minmax(0,1fr);gap:18px;align-items:baseline}}
+dl.terms dt{font-weight:600;color:var(--ink)}
+dl.terms dd{margin:0;color:var(--muted)}
+
+.note,.box{margin:17px 0 0;padding:14px 17px;border-radius:10px;border:1px solid var(--rule);background:var(--surface-2);font-size:.9375rem;max-width:72ch}
+.note.tip,.box.tip{background:var(--accent-soft);border-color:var(--accent-rule)}
+.box.warn{background:var(--alert-soft);border-color:var(--alert-rule)}
+.note .tag,.box .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.note.tip .tag,.box.tip .tag{color:var(--accent)}
+.box.warn .tag{color:var(--alert)}
+.note p,.box p{margin:0 0 8px;max-width:none}
+.note p:last-child,.box p:last-child{margin-bottom:0}
+.note ul,.box ul{margin:0;padding-left:1.15em}
+
+blockquote{margin:17px 0;padding:15px 20px;border-left:3px solid var(--accent-hi);background:var(--accent-soft);border-radius:0 10px 10px 0;font-family:var(--f-display);font-size:1.04rem;font-style:italic;line-height:1.5;max-width:70ch;color:var(--ink)}
+blockquote p{margin:0 0 7px;max-width:none}
+blockquote p:last-child{margin:0}
+blockquote cite{display:block;margin-top:8px;font-family:var(--f-body);font-style:normal;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+code,.seq{font-family:var(--f-mono);font-size:.9em}
+.seq{background:var(--surface-3);padding:2px 6px;border-radius:5px;letter-spacing:.04em;color:var(--ink)}
+
+.tablewrap,.tw{overflow-x:auto;margin:0 0 12px}
+table,.pairtable{border-collapse:collapse;width:100%;font-size:.9375rem}
+.pairtable{max-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.71rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.k{font-weight:600;white-space:nowrap;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-family:var(--f-mono);font-size:.8rem;font-weight:500;color:var(--chip-ink);margin-right:6px}
+.chip.a{background:var(--base-a)}.chip.t{background:var(--base-t)}
+.chip.g{background:var(--base-g)}.chip.c{background:var(--base-c)}
+
+figure{margin:19px 0 0;padding:19px;background:var(--surface-2);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
+figure svg{display:block;width:100%;max-width:100%;height:auto;color:var(--ink)}
+.scroller svg{min-width:640px}
+figcaption{margin-top:13px;font-size:.875rem;color:var(--muted);max-width:66ch}
+/* figure.shot -- a screenshot of the book's own figure, not a redrawn SVG. White
+   plate behind it because the textbook art assumes a white page; without it the
+   art floats on the dark surface and its thin black leader lines disappear. */
+figure.shot{padding:0;overflow:hidden}
+figure.shot img{display:block;width:100%;height:auto;background:#fff}
+figure.shot figcaption{margin:0;padding:13px 19px;max-width:none}
+
+details.reveal{margin-top:11px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);overflow:hidden}
+details.reveal summary{cursor:pointer;padding:12px 15px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start;color:var(--ink)}
+details.reveal summary::-webkit-details-marker{display:none}
+details.reveal summary::after{content:"show";margin-left:auto;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;padding-top:3px}
+details.reveal[open] summary::after{content:"hide"}
+details.reveal summary:hover{background:var(--surface-2)}
+details.reveal .body{padding:0 15px 14px;color:var(--muted);font-size:.9375rem}
+details.reveal .body p{margin:0 0 8px}
+details.reveal .body p:last-child{margin:0}
+.qnum{font-family:var(--f-mono);font-size:.82rem;color:var(--accent);flex:none;min-width:2.1em}
+
+.reviewed{margin-top:22px;padding-top:15px;border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px;font-size:.875rem;color:var(--muted)}
+.reviewed input{width:17px;height:17px;accent-color:var(--accent-hi);cursor:pointer}
+.reviewed label{cursor:pointer;user-select:none}
+
+.essay-grid{display:grid;gap:13px}
+@media (min-width:780px){.essay-grid{grid-template-columns:repeat(3,1fr)}}
+.essay{border:1px solid var(--rule);border-radius:10px;padding:17px;background:var(--surface-2)}
+.essay .kind{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.essay h4{margin:0 0 8px;font-family:var(--f-display);font-size:1.1rem;font-weight:600;line-height:1.25;color:var(--ink)}
+.essay ul{margin:0;padding-left:1.1em;font-size:.875rem;color:var(--muted)}
+
+/* board work */
+.plan h2{margin:0;padding:14px 18px;font-family:var(--f-mono);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--rule);background:var(--surface-2)}
+.plan ol{margin:0;padding:14px 18px 14px 34px;display:flex;flex-direction:column;gap:7px;font-size:.9375rem;max-width:none}
+.plan li{color:var(--muted)}
+.plan .foot{margin:0;padding:12px 18px 16px;font-size:.875rem;color:var(--muted);border-top:1px solid var(--rule);max-width:none}
+.block{padding:20px 24px 22px}
+.block + .block{border-top:1px dashed var(--rule)}
+.blabel{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:center;gap:9px}
+.blabel.draw{color:var(--muted)}
+.blabel.write{color:var(--accent)}
+.blabel i{width:20px;height:1px;background:currentColor;display:block;flex:none}
+.sketch{margin:0 0 12px;color:var(--muted);font-size:.9375rem;max-width:68ch}
+.sketch b{color:var(--ink)}
+ul.labels{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px;max-width:none}
+ul.labels li{font-family:var(--f-mono);font-size:.8rem;border:1px dashed var(--rule-2);border-radius:6px;padding:4px 9px;color:var(--ink);background:var(--surface-2);margin:0}
+ul.labels li.n{border-color:transparent;background:var(--src-lab-soft);color:var(--src-lab)}
+ul.labels li.l{border-color:transparent;background:var(--src-lec-soft);color:var(--src-lec)}
+.copy{background:var(--accent-soft);border-left:3px solid var(--accent-hi);border-radius:0 10px 10px 0;padding:14px 18px}
+.copy ul,.copy ol{margin:0;padding-left:1.25em}
+.copy li{margin-bottom:6px;font-size:.9375rem}
+.copy .sub{margin:11px 0 6px;font-weight:600;font-size:.9375rem;max-width:none;color:var(--ink)}
+.copy .sub:first-child{margin-top:0}
+.copy table{max-width:470px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:13px;height:13px;border-radius:4px;border:1px solid var(--rule-2);background:var(--surface-2);display:block;flex:none}
+.legend i.n{border-color:transparent;background:var(--src-lab)}
+.legend i.l{border-color:transparent;background:var(--src-lec)}
+.vocab{padding:18px 20px;border-color:var(--rule);background:var(--surface-2)}
+.vocab h2{margin:0 0 4px;font-family:var(--f-display);font-size:1.22rem;font-weight:600;color:var(--ink)}
+.vocab p{margin:0 0 14px;font-size:.9rem;color:var(--muted);max-width:64ch}
+.vocab .grp{margin-bottom:12px}
+.vocab .grp:last-child{margin-bottom:0}
+.vocab .gname{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.vocab ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;max-width:none}
+.vocab li{font-family:var(--f-mono);font-size:.78rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:3px 8px;margin:0}
+.flag{display:inline-block;font-family:var(--f-mono);font-size:.67rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-rule);background:var(--accent-soft);border-radius:5px;padding:1px 6px;margin-right:7px}
+.tagL{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 6px;margin-right:7px;vertical-align:1px;white-space:nowrap}
+
+.fix{display:grid;gap:0}
+.fix div{display:grid;grid-template-columns:1fr;gap:2px;padding:9px 0;border-bottom:1px dashed var(--rule)}
+@media(min-width:620px){.fix div{grid-template-columns:206px minmax(0,1fr);gap:16px;align-items:baseline}}
+.fix div:last-child{border-bottom:0}
+.fix .bad{font-family:var(--f-mono);font-size:.84rem;color:var(--muted);text-decoration:line-through}
+.fix .good{font-size:.9375rem}
+
+/* empty slot */
+.slot{border:1px dashed var(--accent-rule);background:var(--accent-soft);border-radius:12px;padding:24px 26px;margin:0 0 14px}
+.slot h3{margin:0 0 9px;font-family:var(--f-display);font-size:1.28rem;font-weight:600;text-transform:none;letter-spacing:-.008em;color:var(--ink);border-bottom:0;padding-bottom:0}
+.slot p{margin:0 0 9px;color:var(--muted);font-size:.9375rem}
+.slot p:last-child{margin:0}
+
+/* conflict table */
+.conflict td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.verdict{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:2px 7px;white-space:nowrap;display:inline-block}
+
+/* cram list */
+.cram{counter-reset:cram;list-style:none;padding:0;margin:0;max-width:none}
+.cram li{counter-increment:cram;position:relative;padding:12px 0 12px 42px;border-bottom:1px dashed var(--rule);margin:0}
+.cram li:last-child{border-bottom:0}
+.cram li::before{
+  content:counter(cram,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:var(--f-mono);font-size:.78rem;color:var(--accent);
+}
+
+footer.foot{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule);color:var(--muted);font-size:.875rem}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<style>
+
+/* ============ VERTICAL RHYTHM FOR GENERATED BLOCKS ============
+   The skeleton's components were written for a hand-authored page: each block
+   was placed deliberately, and most of them lean on the NEXT element's top
+   margin rather than carrying a bottom margin of their own. figure, .note and
+   .box are all `margin-bottom:0`; ul.outline, dl.terms and ul.labels are
+   `margin:0` on both sides.
+
+   A generated page stacks those blocks in whatever order the content file
+   dictates, so a figure followed by an outline, or a note followed by a term
+   list, renders flush. Give every direct child of a card its own bottom
+   margin. Adjacent sibling margins collapse, so this never doubles up against
+   an element that already carries a top margin. ============ */
+.sect > *, .card > *{margin-bottom:18px}
+.sect > *:last-child, .card > *:last-child{margin-bottom:0}
+
+.sect > .sect-head{margin-bottom:8px}
+.sect > p, .card > p{margin-bottom:14px}
+.sect > figure, .card > figure{margin-top:20px}
+.sect > ul.outline, .card > ul.outline{margin-top:16px}
+.sect > dl.terms, .card > dl.terms{margin-top:2px}
+.sect > .tw, .card > .tw{margin-top:14px}
+.sect > .note, .sect > .box, .card > .note, .card > .box{margin-top:17px}
+.sect > blockquote, .card > blockquote{margin-top:18px}
+.sect > .fix, .card > .fix{margin-top:4px}
+.sect > .srcs, .card > .srcs{margin-top:0;margin-bottom:14px}
+.sect > .essay-grid, .card > .essay-grid{margin-top:4px}
+.sect > ol.cram, .card > ol.cram{margin-top:4px}
+
+/* consecutive reveals keep the skeleton's tighter 11px step */
+.sect > details.reveal, .card > details.reveal{margin-top:11px;margin-bottom:0}
+.sect > details.reveal:last-child, .card > details.reveal:last-child{margin-bottom:0}
+
+/* .plan is a panel in its own right, not a .sect, so its .block children need
+   the same rhythm treatment. .plan itself is overflow:hidden, so margins on the
+   first and last child must collapse to nothing. */
+.block > *{margin-bottom:16px}
+.block > *:last-child{margin-bottom:0}
+.block > p.blabel{margin-top:0;margin-bottom:10px}
+.block > p.sketch{margin-top:0;margin-bottom:14px}
+.block > ul.labels{margin-top:2px;margin-bottom:0}
+.block > .copy{margin-top:0}
+.block > .note, .block > .box{margin-top:16px}
+.block > .plan{margin-top:16px;margin-bottom:0}
+.block > figure{margin-top:16px}
+.block > .tw{margin-top:14px}
+.block > .reviewed{margin-top:20px}
+.plan > .block + .block{margin-top:0}
+
+/* board work: DRAW / LABELS / WRITE need a clear break between each stanza */
+.sect > p.blabel{margin-top:24px;margin-bottom:10px}
+.sect > .sect-head + p.blabel{margin-top:16px}
+.sect > p.sketch{margin-top:0;margin-bottom:14px}
+.sect > ul.labels{margin-top:2px;margin-bottom:16px}
+.sect > .copy{margin-top:2px;margin-bottom:16px}
+
+/* an h3 keeps its 24px lead-in unless it genuinely opens the card --
+   the skeleton zeroes the FIRST h3, which on a generated page is usually
+   preceded by a figure or an outline rather than being the first element */
+.sect > h3:first-of-type, .card > h3:first-of-type{margin-top:26px}
+.sect > h3, .card > h3{margin-top:26px}
+.sect > h3:first-child, .card > h3:first-child{margin-top:0}
+.card > h2 + h3{margin-top:14px}
+
+/* uracil: the skeleton defined chips for A/T/G/C only. U replaces T in RNA
+   and pairs with A the same way, so it inherits T's colour. */
+.chip.u{background:var(--base-t)}
+
+/* ============ ADDED FOR THE GENERATED SITE ============
+   Showcase cards, status chips and conflict/synthesis bits.
+   Tokens only — never hard-code a colour here. ============ */
+.statusrow{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none;max-width:none}
+.statusrow li{margin:0}
+.chip-s{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.68rem;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;
+  border:1px solid var(--rule);background:var(--surface-2);color:var(--muted)}
+.chip-s::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip-s.done{color:var(--src-lab);background:var(--src-lab-soft);border-color:transparent}
+.chip-s.pending{color:var(--src-lec);background:var(--src-lec-soft);border-color:transparent}
+.chip-s.stale{color:var(--alert);background:var(--alert-soft);border-color:var(--alert-rule)}
+.chip-s.empty{color:var(--muted);background:var(--surface-2)}
+
+.wkgrid{display:grid;gap:13px;margin:0 0 30px}
+@media(min-width:720px){.wkgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.wkgrid{grid-template-columns:repeat(3,1fr)}}
+.wk{background:var(--surface);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);
+  padding:17px 19px 18px;display:flex;flex-direction:column;gap:9px}
+.wk.is-now{border-color:var(--accent-rule);background:var(--accent-soft)}
+.wk.is-past{opacity:.72}
+.wk .wkhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.wk .wknum{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.wk .wkdates{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.wk h3{margin:0;font-family:var(--f-display);font-size:1.12rem;font-weight:600;line-height:1.25;
+  color:var(--ink);letter-spacing:-.008em;text-wrap:balance}
+.wk h3 a{text-decoration:none;color:inherit}
+.wk h3 a:hover{color:var(--accent)}
+.wk .wklab{font-size:.84rem;color:var(--muted);margin:0}
+.wk .wkexam{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--alert);background:var(--alert-soft);border:1px solid var(--alert-rule);
+  border-radius:5px;padding:1px 7px;align-self:flex-start}
+.wk .wknow{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+.bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;margin:9px 0 7px}
+.bar i{display:block;height:100%;background:var(--accent-hi);border-radius:99px}
+.pstat{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.pstat b{color:var(--ink);font-weight:500}
+
+.oq{margin:0 0 14px;padding:18px 20px;background:var(--surface);border:1px solid var(--rule);
+  border-radius:12px;box-shadow:var(--shadow)}
+.oq h3{margin:0 0 8px;font-family:var(--f-display);font-size:1.15rem;font-weight:600;color:var(--ink);
+  text-transform:none;letter-spacing:-.008em;border-bottom:0;padding-bottom:0}
+.oq .affects{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent);margin:9px 0 0}
+.oq p{font-size:.9375rem;margin:0 0 9px}
+.oq p:last-child{margin:0}
+.oq ul{font-size:.9375rem}
+.countdown{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);white-space:nowrap}
+.countdown.past{color:var(--muted)}
+.flags{margin:0 0 24px;padding:0;list-style:none;max-width:none;display:grid;gap:9px}
+.flags li{margin:0;padding:12px 15px;border-radius:10px;border:1px solid var(--alert-rule);
+  background:var(--alert-soft);font-size:.9063rem;color:var(--ink-2)}
+.flags li::before{content:"Flag";display:block;font-family:var(--f-mono);font-size:.67rem;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--alert);margin-bottom:4px}
+.srcnote{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.slides{font-family:var(--f-mono);font-size:.78rem;color:var(--src-lec);white-space:nowrap}
+
+/* ============ EXAM PRACTICE PAGES ============
+   The exam-N.html pages and the exam link a week page carries in its tab bar.
+   Tokens only — never hard-code a colour here. ============ */
+.examlink{border-right:0;border-left:1px solid var(--rule);margin:0 0 0 10px;padding:12px 2px 13px 15px}
+.examlink:hover .arw{transform:translateX(2px)}
+.tabbar a.xtab{display:inline-flex;align-items:center;text-decoration:none;font:inherit;font-size:.9375rem;
+  font-weight:500;color:var(--muted);padding:12px 15px 13px;border-bottom:2px solid transparent;
+  white-space:nowrap;border-radius:8px 8px 0 0;transition:color .15s,background .15s}
+.tabbar a.xtab:hover{color:var(--ink);background:var(--surface-2)}
+.tabbar a.xtab.is-current{color:var(--accent);border-bottom-color:var(--accent-hi);background:none}
+.tabbar a.xtab .xst{font-family:var(--f-mono);font-size:.68rem;opacity:.7;margin-left:7px}
+ul.scope{margin:0;padding:0;list-style:none;max-width:none}
+ul.scope li{padding:8px 0;border-bottom:1px dashed var(--rule);margin:0;font-size:.875rem;line-height:1.45}
+ul.scope li:first-child{padding-top:0}
+ul.scope li:last-child{border-bottom:0;padding-bottom:0}
+ul.scope .fine{color:var(--muted);font-size:.8125rem}
+
+.qcontrols{display:flex;flex-direction:column;gap:11px;padding:18px 22px}
+.qrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.qrow .ql{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);min-width:58px}
+.qhint{font-size:.8125rem;color:var(--muted);margin-left:6px}
+.qbtn{appearance:none;cursor:pointer;font:inherit;font-family:var(--f-mono);font-size:.78rem;color:var(--muted);
+  border:1px solid var(--rule);background:var(--surface);padding:4px 11px;border-radius:99px;
+  transition:color .15s,background .15s,border-color .15s}
+.qbtn:hover{border-color:var(--accent-rule);color:var(--accent);background:var(--accent-soft)}
+.qbtn.is-on{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-rule)}
+.qbtn.primary{color:var(--chip-ink);background:var(--accent-hi);border-color:transparent}
+.qbtn.primary:hover{background:var(--accent);color:var(--chip-ink)}
+.qbtn[disabled]{opacity:.45;cursor:default}
+.qbtn.qforget{border-style:dashed}
+.qstatus{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);margin-left:6px}
+.qstatus b{color:var(--ink);font-weight:500}
+.qmock{padding:18px 22px}
+.qmock .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.qmock p{margin:0 0 12px;font-size:.9375rem;max-width:72ch}
+
+.tgroup{margin:0 0 28px}
+.tgroup>h2{font-family:var(--f-display);font-weight:600;font-size:1.42rem;letter-spacing:-.012em;line-height:1.2;margin:0 0 4px;color:var(--ink)}
+.tgroup>.tnote{margin:0 0 14px;color:var(--muted);font-size:.875rem;max-width:none}
+.qcard{background:var(--surface);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);
+  padding:18px 22px 16px;margin:0 0 12px;scroll-margin-top:76px}
+.qcard.is-right{border-color:var(--src-lab)}
+.qcard.is-wrong{border-color:var(--alert)}
+.qhead{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 9px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.qhead .qn{color:var(--accent);font-size:.84rem}
+.qhead .qtopic{letter-spacing:.06em;text-transform:uppercase}
+.qhead .srcs{margin:0 0 0 auto}
+.qhead .qmulti{color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
+.qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
+.qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
+ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
+ul.opts li{margin:0;position:relative}
+ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+ul.opts label{display:flex;gap:11px;align-items:flex-start;cursor:pointer;padding:9px 12px;border:1px solid var(--rule);
+  border-radius:9px;background:var(--surface-2);font-size:.9375rem;line-height:1.45;color:var(--ink-2);
+  transition:border-color .12s,background .12s}
+ul.opts label:hover{border-color:var(--accent-rule)}
+ul.opts input:checked+label{border-color:var(--accent-hi);background:var(--accent-soft);color:var(--ink)}
+ul.opts input:focus-visible+label{outline:2px solid var(--accent-hi);outline-offset:2px}
+ul.opts .ol{font-family:var(--f-mono);font-size:.78rem;color:var(--accent);flex:none;min-width:1.2em;padding-top:2px}
+ul.opts li.is-key label{border-color:var(--src-lab);background:var(--src-lab-soft);color:var(--ink)}
+ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
+.qcard.is-locked ul.opts label{cursor:default}
+.qact{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 0}
+.qres{font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.qres.ok{color:var(--src-lab)}
+.qres.bad{color:var(--alert)}
+.qcard .why{margin:12px 0 0;padding:12px 15px;border-radius:10px;border:1px solid var(--rule);background:var(--surface-2);font-size:.9375rem;max-width:76ch}
+.qcard .why .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+.qcard .why p{margin:0 0 8px;max-width:none}
+.qcard .why p:last-child{margin:0}
+.qcard .why .grader{color:var(--muted);font-size:.875rem}
+.qcard textarea{width:100%;font:inherit;font-size:.9375rem;line-height:1.5;color:var(--ink);background:var(--surface-2);
+  border:1px solid var(--rule);border-radius:9px;padding:10px 12px;resize:vertical;min-height:84px;display:block}
+.qcard textarea:focus{outline:2px solid var(--accent-hi);outline-offset:2px}
+.is-mock .qcheck,.is-mock .qshow{display:none}
+.qscore{padding:20px 24px}
+.qscore .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.qscore .big{font-family:var(--f-display);font-size:2.2rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1;margin:0 0 14px}
+.qscore .big small{font-size:.9rem;color:var(--muted);font-family:var(--f-mono);font-weight:400;letter-spacing:0;margin-left:10px}
+.qscore table{max-width:520px}
+.qscore p{margin:10px 0 0;font-size:.9375rem}
+.wk.is-shell{opacity:.8}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">BIO 5 &middot; Human Biology &middot; Fall 2026 &middot; Whalen</p>
+    <h1>The term, all seventeen weeks</h1>
+    <p class="lede">One card per week. Chips show what has been ingested and what is still
+      missing. Dates and countdowns are computed in your browser when the page opens, so this
+      page never goes stale just because the date moved.</p>
+    <div class="meta-row">
+      <span><i class="dot"></i>Aug 10 &ndash; Dec 4, 2026</span>
+      <span><i class="dot"></i>Section 83299 &middot; Monday lab</span>
+      <span><i class="dot"></i><span id="today">&mdash;</span></span>
+    </div>
+  </header>
+
+  <div class="glance">
+    <div class="gcard deadlines">
+      <p class="gh">Next three deadlines</p>
+      <ol class="dl" id="next-dl">
+        <li><span class="when">&mdash;</span><span class="what">Computing&hellip;</span></li>
+      </ol>
+    </div>
+    <div class="gcard">
+      <p class="gh">Progress</p>
+      <div class="bar"><i style="width:28%"></i></div>
+      <p class="pstat"><b>28</b> of <b>99</b> tabs ingested &middot; 28%</p>
+      <p class="gh" style="margin-top:15px">Exam weeks</p>
+      <ul id="exam-weeks"><li>&mdash;</li></ul>
+    </div>
+  </div>
+
+  <h2 style="font-family:var(--f-display);font-weight:600;font-size:1.5rem;color:var(--ink);margin:0 0 6px">Exams</h2>
+  <p style="color:var(--muted);margin:0 0 14px;font-size:.9375rem">One practice page per exam. A card with a question
+    count has a bank you can drill; a <em>shell</em> has its scope and date but no questions yet.</p>
+  <div class="wkgrid">
+<article class="wk xk">
+  <div class="wkhead"><span class="wknum">Unit 1</span><span class="wkdates">Mon 09/14</span></div>
+  <h3><a href="exam-1.html">Unit 1 Exam</a></h3>
+  
+  <p class="wklab">Monday 09/14, issued in the 8:00–11:05 lab period · 200 pts<br><span class="srcnote">387 questions &middot; 10 of 10 topics banked</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 1</span></li><li><span class="chip-s done">Ch. 2</span></li><li><span class="chip-s done">Ch. 3</span></li><li><span class="chip-s done">Ch. 19</span></li><li><span class="chip-s done">Ch. 20</span></li><li><span class="chip-s done">Ch. 21</span></li><li><span class="chip-s done">Lab 1</span></li><li><span class="chip-s done">Lab 2</span></li><li><span class="chip-s done">Lab 3</span></li><li><span class="chip-s done">Lab 4</span></li></ul>
+</article>
+<article class="wk xk is-shell">
+  <div class="wkhead"><span class="wknum">Unit 2</span><span class="wkdates">Mon 10/05</span></div>
+  <h3><a href="exam-2.html">Unit 2 Exam</a></h3>
+  <span class="wkexam">scope inferred</span>
+  <p class="wklab">Monday 10/05, in the lab period · 200 pts<br><span class="srcnote">shell &mdash; scope and date only</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 4</span></li><li><span class="chip-s empty">Ch. 3 · Respiration</span></li><li><span class="chip-s empty">Ch. 15</span></li><li><span class="chip-s empty">Ch. 15a</span></li><li><span class="chip-s empty">Ch. 5</span></li><li><span class="chip-s empty">Ch. 6</span></li><li><span class="chip-s empty">Ch. 7</span></li><li><span class="chip-s empty">Lab 5</span></li><li><span class="chip-s empty">Lab 6</span></li><li><span class="chip-s empty">Lab 7</span></li><li><span class="chip-s empty">Lab 8</span></li></ul>
+</article>
+<article class="wk xk is-shell">
+  <div class="wkhead"><span class="wknum">Unit 3</span><span class="wkdates">Mon 11/02</span></div>
+  <h3><a href="exam-3.html">Unit 3 Exam</a></h3>
+  <span class="wkexam">scope inferred</span>
+  <p class="wklab">Monday 11/02, in the lab period · 200 pts<br><span class="srcnote">shell &mdash; scope and date only</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 7</span></li><li><span class="chip-s empty">Ch. 8</span></li><li><span class="chip-s empty">Ch. 8a</span></li><li><span class="chip-s empty">Ch. 9</span></li><li><span class="chip-s empty">Ch. 10</span></li><li><span class="chip-s empty">Ch. 10a</span></li><li><span class="chip-s empty">Ch. 11</span></li><li><span class="chip-s empty">Lab 9</span></li><li><span class="chip-s empty">Lab 10</span></li><li><span class="chip-s empty">Lab 11</span></li></ul>
+</article>
+<article class="wk xk is-shell">
+  <div class="wkhead"><span class="wknum">Unit 4</span><span class="wkdates">Mon 11/30</span></div>
+  <h3><a href="exam-4.html">Unit 4 Exam</a></h3>
+  <span class="wkexam">scope inferred</span>
+  <p class="wklab">Monday 11/30, in the lab period · 200 pts<br><span class="srcnote">shell &mdash; scope and date only</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 11</span></li><li><span class="chip-s empty">Ch. 12</span></li><li><span class="chip-s empty">Ch. 12a</span></li><li><span class="chip-s empty">Ch. 13</span></li><li><span class="chip-s empty">Ch. 13a</span></li><li><span class="chip-s empty">Ch. 14</span></li><li><span class="chip-s empty">Ch. 16</span></li><li><span class="chip-s empty">Ch. 17</span></li><li><span class="chip-s empty">Ch. 17a</span></li><li><span class="chip-s empty">Ch. 18</span></li><li><span class="chip-s empty">Ch. 18a</span></li><li><span class="chip-s empty">Ch. 22</span></li><li><span class="chip-s empty">Ch. 23</span></li><li><span class="chip-s empty">Ch. 24</span></li><li><span class="chip-s empty">Lab 12</span></li><li><span class="chip-s empty">Lab 13</span></li><li><span class="chip-s empty">Lab 14</span></li><li><span class="chip-s empty">Lab 15</span></li><li><span class="chip-s empty">Lab 16</span></li></ul>
+</article>
+<article class="wk xk is-shell">
+  <div class="wkhead"><span class="wknum">Final</span><span class="wkdates">finals week — date unresolved</span></div>
+  <h3><a href="exam-final.html">Final Exam</a></h3>
+  
+  <p class="wklab">Finals week, Dec 7–11 · date, time and room unresolved · 200 pts<br><span class="srcnote">shell &mdash; scope and date only</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">comprehensive</span></li></ul>
+</article>
+  </div>
+
+  <h2 style="font-family:var(--f-display);font-weight:600;font-size:1.5rem;color:var(--ink);margin:0 0 14px">Weeks</h2>
+  <div class="wkgrid">
+<article class="wk" data-week="1">
+  <div class="wkhead"><span class="wknum">Week 1</span><span class="wkdates">Aug 10–14, 2026</span></div>
+  <h3><a href="week-01.html">Intro to Bio &amp; Chem</a></h3>
+  
+  <p class="wklab">Lab 1 &mdash; Lab Safety, Measurements &amp; Chemistry<br><span class="srcnote">Monday 08/10</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 1</span></li><li><span class="chip-s done">Ch. 2</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s done">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="2">
+  <div class="wkhead"><span class="wknum">Week 2</span><span class="wkdates">Aug 17–21, 2026</span></div>
+  <h3><a href="week-02.html">Cell &amp; Cell Physiology</a></h3>
+  
+  <p class="wklab">Lab 2 &mdash; Microscopy, Cell Structure &amp; Transport<br><span class="srcnote">Monday 08/17</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 3</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="3">
+  <div class="wkhead"><span class="wknum">Week 3</span><span class="wkdates">Aug 24–28, 2026</span></div>
+  <h3><a href="week-03.html">DNA &amp; Biotechnology</a></h3>
+  
+  <p class="wklab">Lab 3 &mdash; DNA &amp; Protein Synthesis<br><span class="srcnote">Monday 08/24</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 21</span></li><li><span class="chip-s done">Ch. 21a</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s stale">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="4">
+  <div class="wkhead"><span class="wknum">Week 4</span><span class="wkdates">Aug 31 – Sep 4, 2026</span></div>
+  <h3><a href="week-04.html">Cell Division &amp; Genetics</a></h3>
+  
+  <p class="wklab">Lab 4 &mdash; Cell Division &amp; Genetics<br><span class="srcnote">Monday 08/31</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 19</span></li><li><span class="chip-s done">Ch. 19a</span></li><li><span class="chip-s done">Ch. 20</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s stale">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="5">
+  <div class="wkhead"><span class="wknum">Week 5</span><span class="wkdates">Sep 7–11, 2026</span></div>
+  <h3><a href="week-05.html">Tissues</a></h3>
+  
+  <p class="wklab">Lab 5 &mdash; Intro to Anatomy, Tissues &amp; Integumentary — review session<br><span class="srcnote">Wed 09/09 — optional, all sections invited</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">&rarr; Week 6</span></li></ul>
+</article>
+<article class="wk" data-week="6">
+  <div class="wkhead"><span class="wknum">Week 6</span><span class="wkdates">Sep 14–18, 2026</span></div>
+  <h3><a href="week-06.html">Body Organization, Integumentary &amp; Homeostasis · Unit 1 Exam</a></h3>
+  <span class="wkexam">Unit 1 Exam</span>
+  <p class="wklab">Lab 5 &mdash; Intro to Anatomy, Tissues &amp; Integumentary<br><span class="srcnote">Monday 09/14 — the Unit 1 Exam is issued in this period</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 4</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s done">Lecture 3</span></li><li><span class="chip-s stale">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="7">
+  <div class="wkhead"><span class="wknum">Week 7</span><span class="wkdates">Sep 21–25, 2026</span></div>
+  <h3><a href="week-07.html">Digestive System, Nutrition &amp; Cell Respiration</a></h3>
+  
+  <p class="wklab">Lab 5 &mdash; Intro to Anatomy, Tissues &amp; Integumentary<br><span class="srcnote">Monday 09/21 — moved here from 09/14 · Canvas puts Lab 6 in this slot; Whalen said Lab 5</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 3</span></li><li><span class="chip-s done">Ch. 15</span></li><li><span class="chip-s done">Ch. 15a</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="8">
+  <div class="wkhead"><span class="wknum">Week 8</span><span class="wkdates">Sep 28 – Oct 2, 2026</span></div>
+  <h3><a href="week-08.html">Skeletal &amp; Muscular Systems</a></h3>
+  
+  <p class="wklab">Lab 7 &mdash; Skeletal<br><span class="srcnote">Monday 09/28</span></p>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 5</span></li><li><span class="chip-s done">Ch. 6</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="9">
+  <div class="wkhead"><span class="wknum">Week 9</span><span class="wkdates">Oct 5–9, 2026</span></div>
+  <h3><a href="week-09.html">Neurons · Unit 2 Exam</a></h3>
+  <span class="wkexam">Unit 2 Exam</span>
+  <p class="wklab">No lab manual this week<br><span class="srcnote"></span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 7</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="10">
+  <div class="wkhead"><span class="wknum">Week 10</span><span class="wkdates">Oct 12–16, 2026</span></div>
+  <h3><a href="week-10.html">Nervous System (CNS, PNS, ANS)</a></h3>
+  
+  <p class="wklab">Lab 9 &mdash; Nervous System &amp; Nervous Tissue<br><span class="srcnote">Monday 10/12</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 8</span></li><li><span class="chip-s empty">Ch. 8a</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="11">
+  <div class="wkhead"><span class="wknum">Week 11</span><span class="wkdates">Oct 19–23, 2026</span></div>
+  <h3><a href="week-11.html">Sensory Systems</a></h3>
+  
+  <p class="wklab">Lab 10 &mdash; Senses<br><span class="srcnote">Monday 10/19</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 9</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="12">
+  <div class="wkhead"><span class="wknum">Week 12</span><span class="wkdates">Oct 26–30, 2026</span></div>
+  <h3><a href="week-12.html">Endocrine System</a></h3>
+  
+  <p class="wklab">Lab 11 &mdash; Endocrine System<br><span class="srcnote">Monday 10/26</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 10</span></li><li><span class="chip-s empty">Ch. 10a</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="13">
+  <div class="wkhead"><span class="wknum">Week 13</span><span class="wkdates">Nov 2–6, 2026</span></div>
+  <h3><a href="week-13.html">Blood · Unit 3 Exam</a></h3>
+  <span class="wkexam">Unit 3 Exam</span>
+  <p class="wklab">No lab manual this week<br><span class="srcnote"></span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 11</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="14">
+  <div class="wkhead"><span class="wknum">Week 14</span><span class="wkdates">Nov 9–13, 2026</span></div>
+  <h3><a href="week-14.html">Cardiovascular, Lymphatic &amp; Immunity</a></h3>
+  
+  <p class="wklab">Lab 12 &mdash; Blood &amp; Immunity<br><span class="srcnote">Monday 11/09</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 12</span></li><li><span class="chip-s empty">Ch. 12a</span></li><li><span class="chip-s empty">Ch. 13</span></li><li><span class="chip-s empty">Ch. 13a</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="15">
+  <div class="wkhead"><span class="wknum">Week 15</span><span class="wkdates">Nov 16–20, 2026</span></div>
+  <h3><a href="week-15.html">Respiratory &amp; Urinary Systems</a></h3>
+  
+  <p class="wklab">Lab 14 &mdash; Respiratory<br><span class="srcnote">Monday 11/16</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 14</span></li><li><span class="chip-s empty">Ch. 16</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="16">
+  <div class="wkhead"><span class="wknum">Week 16</span><span class="wkdates">Nov 23–27, 2026</span></div>
+  <h3><a href="week-16.html">Reproductive System &amp; Development</a></h3>
+  
+  <p class="wklab">Lab 16 &mdash; Reproductive System<br><span class="srcnote">Monday 11/23</span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 17</span></li><li><span class="chip-s empty">Ch. 17a</span></li><li><span class="chip-s empty">Ch. 18</span></li><li><span class="chip-s empty">Ch. 18a</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+<article class="wk" data-week="17">
+  <div class="wkhead"><span class="wknum">Week 17</span><span class="wkdates">Nov 30 – Dec 4, 2026</span></div>
+  <h3><a href="week-17.html">Evolution, Ecology and Populations · Unit 4 Exam</a></h3>
+  <span class="wkexam">Unit 4 Exam</span>
+  <p class="wklab">No lab manual this week<br><span class="srcnote"></span></p>
+  <ul class="statusrow"><li><span class="chip-s empty">Ch. 22</span></li><li><span class="chip-s empty">Ch. 23</span></li><li><span class="chip-s empty">Ch. 24</span></li><li><span class="chip-s empty">Board Work</span></li><li><span class="chip-s empty">Lecture 1</span></li><li><span class="chip-s empty">Lecture 2</span></li><li><span class="chip-s empty">Synthesized</span></li></ul>
+</article>
+  </div>
+
+  <h2 style="font-family:var(--f-display);font-weight:600;font-size:1.5rem;color:var(--ink);margin:34px 0 6px">Open questions</h2>
+  <p style="color:var(--muted);margin:0 0 16px;font-size:.9375rem">Contradictions in the syllabus,
+    carried verbatim from <code>class/open-questions.md</code>. None of these are resolved. They stay
+    here until Whalen or Canvas settles them.</p>
+<div class="oq"><p><strong>Two remain</strong> — whether the labs after Lab 5 all shift a week or the class doubles up, and the final exam date. Both are flagged on the week pages they affect and rendered in full on <code>pages/index.html</code>, so they stay visible until Whalen or Canvas settles them.</p><p><strong>Eight earlier questions have been resolved</strong> — five by the Canvas modules outline (<code>class/modules-outline.md</code>), which overrides the syllabus, and three by Whalen announcing changes. They are kept at the bottom so the reasoning is not lost.</p><p>Resolve one by asking Whalen or checking Canvas, then edit the affected <code>weeks/week-NN/meta.yml</code> and move the entry down to the resolved section.</p></div><div class="oq"><h3>1. Do the labs after Lab 5 all shift a week, or does the class double up</h3><p><strong>Lab 5 itself is settled</strong> — it runs Mon 09/21 and its deliverables are due Fri 09/25 (see the resolved entry below). What that move did not settle is <strong>every lab after it</strong>, because Lab 5 has landed on top of Lab 6&#x27;s period.</p><ul><li><strong>Canvas&#x27;s schedule before the move:</strong> Lab 6 (Cellular Respiration &amp; Digestive)</li></ul><p>in the Mon 09/21 period, document and quiz due Fri 09/25. Lab 7 (Skeletal) and Lab 8 (Muscular) both in the week of 09/28, both due Fri 10/02 — that week was <strong>already</strong> a double.</p><ul><li><strong>Whalen moved only Lab 5.</strong> *&quot;I switched the lab stuff. And really only the lab</li></ul><p>stuff.&quot;* He said nothing about Lab 6 in the same breath.</p><ul><li><strong>Asked the question directly in the Wed 09/16 lecture</strong> — *&quot;is all the labs</li></ul><p>gonna be switched to the right, or are we gonna have to double up eventually?&quot;<em> — he answered: </em>&quot;Really good point. I&#x27;m inclined to say we&#x27;re gonna double up. Yeah, for a bit we have to. I&#x27;ll see what I can do about it, because I&#x27;d rather not. I&#x27;d rather give every lab its own time.&quot;*</p><p><strong>That is an inclination, not a schedule.</strong> Doubling up means <strong>Lab 5 and Lab 6 both due Fri 09/25</strong>, on top of a Week 8 that already carries two labs. Shifting right means Lab 6 moves to 09/28 and the pile-up walks down the term.</p><p><strong>A second, smaller version of the same question.</strong> In the same lecture he named the <strong>citric acid cycle&#x27;s inputs and outputs</strong> as a <strong>board work topic</strong> for <em>&quot;next week during lab&quot;</em> — but the citric acid cycle is <strong>Lab 6</strong> material, and he had just said next week&#x27;s lab is <strong>Lab 5</strong>. Either the two labs run together on 09/21 or the board topic is a week further out.</p><p><strong>Do this regardless:</strong> hand in the <strong>Lab 5 board sheet</strong> on Mon 09/21 (prepared on the Week 6 Board Work tab), <strong>and</strong> prepare the citric acid cycle panel — one extra page, and it is the only part of Lab 6&#x27;s board work he has actually named. <strong>Check Canvas before Monday</strong> for Lab 6&#x27;s document and quiz dates. Week 7 shows both labs due Fri 09/25, which is the expensive case if it is true.</p><p><strong>Affects:</strong> weeks 7 and 8, and possibly the rest of the term. <strong>Consequence if unresolved:</strong> a 10-point document and a 15-point quiz against a deadline you did not know had stayed put. <strong>Late work is not accepted.</strong></p></div><div class="oq"><h3>2. When the final exam is</h3><p>Three statements, no two of which fully agree:</p><ul><li><strong>Syllabus, section IX:</strong> Tuesday, <strong>December 9</strong>, 11:00 AM – 12:50 PM, <strong>AC3-101</strong></li><li><strong>Syllabus schedule table:</strong> <code>83299 MON 12/7 8:00am – 9:50am AC2-178</code></li><li><strong>Canvas, Week 18:</strong> &quot;FINAL EXAM — Comprehensive BIO 5 — 200 pts&quot;, module range</li></ul><p>12/08–12/12. <strong>No day, no time, no room.</strong></p><p>Canvas — which overrides the syllabus everywhere else — does not disambiguate this one. Applying the same one-day offset that every other Canvas module range uses, Week 18&#x27;s range corresponds to the official finals week of <strong>Dec 7–11</strong>, which both syllabus answers already fall inside. So Canvas rules out nothing.</p><p>I am in section <strong>83299</strong>, which is named explicitly in the schedule-table row, and AC2-178 is the room this course&#x27;s lecture already meets in. That is the stronger evidence — but it is still inference, and this is the one date in the course that cannot be re-sat.</p><p><strong>Not written into any page.</strong> Week 17 carries a flag pointing here.</p><p><strong>Affects:</strong> the end of the course. <strong>Ask Whalen directly.</strong></p><p>Kept for the record. Do not re-open without new evidence.</p></div><div class="oq"><h3>✅ What happens to Lab 5, now that the exam took its period</h3><p><strong>Settled by Whalen in the Wed 09/16 lecture, and settled in Canvas the same day.</strong> <em>&quot;Today was the day. I switched the due date for Lab 5 to next week. The quiz went to next week.&quot;</em> The trigger was students telling him the Friday date made no sense with the exam sitting in the lab period — <em>&quot;I didn&#x27;t make any sense, and you guys let me know about it.&quot;</em></p><ul><li><strong>Lab 5 runs Mon 09/21</strong> — <em>&quot;next week in lab, we&#x27;ll have Lab 5.&quot;</em></li><li><strong>Lab 5 document and quiz: Fri 09/25.</strong> Moved in Canvas, not just spoken.</li><li><strong>The board sheet is handed in at the start of the Mon 09/21 session</strong>, as</li></ul><p>normal.</p><ul><li><strong>Nothing else moved.</strong> *&quot;I switched the lab stuff, and really only the lab</li></ul><p>stuff.&quot;<em> The </em><em>WK 6 Practice Test stayed Fri 09/18</em><em> — </em>&quot;we did it in lecture, you&#x27;re still responsible for that&quot;* — and the readings stayed.</p><p><strong>The three readings recorded while this was open</strong> were: Lab 5 runs in a different period; Lab 5 is done independently with the document still due 09/18; or Lab 5 slips a week and the dates move with it. <strong>The third was right.</strong> The Wed 09/09 lecture had already pointed at it — <em>&quot;not next week, but the following week, because what&#x27;s going down next week? Test&quot;</em> — a week before Canvas moved.</p><p><strong>What it did not settle</strong> is every lab after it, which is open question 1 above.</p></div><div class="oq"><h3>✅ When the Unit 1 Exam happens</h3><p><strong>Settled by Whalen&#x27;s Canvas announcement, 09/08: the exam is issued in lab in the week of 9/14 — Monday 09/14 for section 83299.</strong> He confirmed it across all lab sections, and stated in the same announcement that there is <strong>no exam in Week 5</strong> and that <strong>Ch. 4 is the Week 5 lecture topic</strong>. He put it in writing deliberately, having said on 09/02 that he would.</p><p><strong>It took three attempts, and the record is kept because two of them are on tabs.</strong></p><ul><li><strong>Canvas:</strong> Week 5, 200 pts, &quot;during lab&quot;. Impossible — Week 5&#x27;s only lab day is</li></ul><p><strong>Mon Sep 7, Labor Day</strong>, campus closed. Whalen owned the underlying error on 09/02: the syllabus had the holiday in the wrong week all along.</p><ul><li><strong>Whalen, Mon 08/31</strong> (Week 4 Lecture 1 tab): *&quot;not next week, but the week</li></ul><p>after&quot;* — the week of Sep 14. Right, as it turned out.</p><ul><li><strong>Whalen, Wed 09/02</strong> (Week 4 Lecture 2 tab): Wed Sep 9, in the lecture period,</li></ul><p>75 minutes. He hedged it himself — <em>&quot;it could change&quot;</em> — and it did.</p><ul><li><strong>Whalen, Mon 09/08</strong>, by Canvas announcement: <strong>in lab, the week of 9/14.</strong></li></ul><p><strong>The superseded 09/09 date is carried on the Week 4 Lecture 2 tab as a <code>WARN ::</code></strong> so that re-reading that transcript does not re-plant it. <strong>No page states a date other than Mon 09/14.</strong></p><p><strong>Scope was never in dispute</strong> and was stated in the 09/02 lecture: <strong>Ch. 1, 2, 3, 19, 20 and 21, plus Labs 1, 2, 3 and 4. Ch. 4 is not on it.</strong></p><p><strong>Still open, and not the same question:</strong> what happens to Lab 5, whose period the exam now occupies. That is open question 1.</p></div><div class="oq"><h3>✅ Which weeks the unit exams fall in</h3><p>The syllabus contradicted itself: prose said Weeks <strong>5, 10, 13, 17</strong>; its own schedule table said Weeks <strong>5, 9, 13, 17</strong>.</p><p><strong>Canvas settles it: 5, 9, 13, 17.</strong> Week 9 is &quot;Neurons &amp; <strong>Unit 2 Exam</strong>&quot; and Week 10 is &quot;Nervous System&quot; with a full Lab 9 and quiz. The schedule table was right and the prose was wrong.</p></div><div class="oq"><h3>✅ Week 17&#x27;s DSM due on a Saturday</h3><p>The syllabus printed the CH 22–24 DSM as due <strong>12/05</strong>, a Saturday, after Week 17 ends. <strong>Canvas says Friday, Dec 4</strong>, consistent with every other week. The syllabus date was a typo.</p></div><div class="oq"><h3>✅ Four weeks with no printed due date</h3><p>The syllabus omitted a <code>Due:</code> date for Weeks 5, 10, 13 and 17. <strong>Canvas supplies all four</strong> — Sep 11, Oct 16, Nov 6 and Dec 4 respectively. Nothing needs assuming.</p></div><div class="oq"><h3>✅ Week 16 work due during the Thanksgiving closure</h3><p>Week 16&#x27;s work is due <strong>Friday 11/27</strong>, the second day of the Thanksgiving closure (campus closed Nov 26–27).</p><p>This is <strong>confirmed, not contradicted</strong> — Canvas and the syllabus both say 11/27, independently. It is simply a hard deadline over a holiday, and late work is not accepted. Week 16 carries a flag saying so. <strong>Do not assume an extension</strong>; if you want one, ask before the week starts.</p></div><div class="oq"><h3>✅ Veterans Day&#x27;s day of the week</h3><p>The syllabus&#x27;s Week 14 row said &quot;TUESDAY: Veterans Day Holiday&quot;. The college&#x27;s important-dates table said <strong>Wednesday, November 11</strong>. November 11, 2026 is a Wednesday, so the dates table is right and the Week 14 row is simply wrong. No ambiguity, nothing to ask anyone.</p><p><strong>The practical consequence still matters</strong> and stays flagged on Week 14: lecture meets MW, so a Wednesday closure costs that week&#x27;s <strong>Lecture 2</strong>. The Monday lab is unaffected. A Week 14 page promising a Wednesday lecture may be promising one that never happened.</p></div>
+
+  <footer class="foot">
+    <p>BIO 5 &middot; generated by <code>build/render.py</code> from <code>weeks/*/meta.yml</code>
+      and <code>.state.json</code>. Do not hand-edit this file.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var WEEKS = [{"n": 1, "dates": "Aug 10\u201314, 2026", "deadlines": [{"when": "Mon 08/10", "time": "", "what": "Readings: Ch. 1 \u00b7 Ch. 2", "hard": false}, {"when": "Mon 08/10", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Mon 08/10", "time": "", "what": "Laboratory Safety Quiz & Acknowledgement", "hard": false}, {"when": "Mon 08/10", "time": "", "what": "Introduction: Sign In Day 1", "hard": false}, {"when": "Fri 08/14", "time": "11:59pm", "what": "Mastering Biology DSM: CH 1 & CH 2", "hard": true}, {"when": "Fri 08/14", "time": "11:59pm", "what": "WK 1 Practice Test", "hard": true}, {"when": "Fri 08/21", "time": "", "what": "Syllabus Acknowledgement quiz", "hard": false}, {"when": "Fri 08/21", "time": "", "what": "SLO Pre-Assessment", "hard": false}, {"when": "Fri 08/21", "time": "11:59pm", "what": "Lab 1 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-1.html"}, {"n": 2, "dates": "Aug 17\u201321, 2026", "deadlines": [{"when": "Mon 08/17", "time": "", "what": "Readings: Ch. 3", "hard": false}, {"when": "Mon 08/17", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 08/21", "time": "11:59pm", "what": "Mastering Biology DSM: CH 3", "hard": true}, {"when": "Fri 08/21", "time": "11:59pm", "what": "WK 2 Practice Test", "hard": true}, {"when": "Fri 08/21", "time": "11:59pm", "what": "Lab 2 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-1.html"}, {"n": 3, "dates": "Aug 24\u201328, 2026", "deadlines": [{"when": "Mon 08/24", "time": "", "what": "Readings: Ch. 21 \u00b7 Ch. 21a", "hard": false}, {"when": "Mon 08/24", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 08/28", "time": "11:59pm", "what": "Mastering Biology DSM: CH 21", "hard": true}, {"when": "Fri 08/28", "time": "11:59pm", "what": "WK 3 Practice Test", "hard": true}, {"when": "Fri 08/28", "time": "11:59pm", "what": "Lab 3 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-1.html"}, {"n": 4, "dates": "Aug 31 \u2013 Sep 4, 2026", "deadlines": [{"when": "Mon 08/31", "time": "", "what": "Readings: Ch. 19 \u00b7 Ch. 19a \u00b7 Ch. 20", "hard": false}, {"when": "Mon 08/31", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 09/04", "time": "11:59pm", "what": "Mastering Biology DSM: CH 19 & CH 20", "hard": true}, {"when": "Fri 09/04", "time": "11:59pm", "what": "WK 4 Practice Test", "hard": true}, {"when": "Fri 09/04", "time": "11:59pm", "what": "Lab 4 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-1.html"}, {"n": 5, "dates": "Sep 7\u201311, 2026", "deadlines": [{"when": "Mon 09/07", "time": "", "what": "Readings: Ch. 4", "hard": false}, {"when": "Wed 09/09", "time": "", "what": "Lecture: Ch. 4", "hard": false}, {"when": "Wed 09/09", "time": "", "what": "Optional lab review session \u2014 morning", "hard": false}, {"when": "Fri 09/11", "time": "11:59pm", "what": "Mastering Biology DSM: CH 4 Body Organization & Homeostasis", "hard": true}, {"when": "Fri 09/11", "time": "11:59pm", "what": "WK 5 Practice Test", "hard": true}], "exam": "", "exam_page": "exam-2.html"}, {"n": 6, "dates": "Sep 14\u201318, 2026", "deadlines": [{"when": "Mon 09/14", "time": "", "what": "Readings: Ch. 4", "hard": false}, {"when": "Mon 09/14", "time": "", "what": "Unit 1 Exam", "hard": false}, {"when": "Mon 09/21", "time": "", "what": "Board work sheet \u2014 handed in at Lab 5", "hard": false}, {"when": "Fri 09/18", "time": "11:59pm", "what": "WK 6 Practice Test", "hard": true}, {"when": "Fri 09/25", "time": "11:59pm", "what": "Lab 5 document \u2014 10 pts \u2014 moved out of this week", "hard": true}], "exam": "Unit 1 Exam", "exam_page": "exam-2.html"}, {"n": 7, "dates": "Sep 21\u201325, 2026", "deadlines": [{"when": "Mon 09/21", "time": "", "what": "Readings: Ch. 3 \u00b7 Ch. 15 \u00b7 Ch. 15a", "hard": false}, {"when": "Mon 09/21", "time": "", "what": "Board work sheet \u2014 Lab 5's", "hard": false}, {"when": "Fri 09/25", "time": "11:59pm", "what": "Mastering Biology DSM: CH 15", "hard": true}, {"when": "Fri 09/25", "time": "11:59pm", "what": "WK 7 Practice Test", "hard": true}, {"when": "Fri 09/25", "time": "11:59pm", "what": "Lab 5 document \u2014 10 pts \u2014 moved into this week", "hard": true}, {"when": "Fri 09/25", "time": "11:59pm", "what": "Lab 6 document \u2014 10 pts \u2014 date unconfirmed", "hard": true}], "exam": "", "exam_page": "exam-2.html"}, {"n": 8, "dates": "Sep 28 \u2013 Oct 2, 2026", "deadlines": [{"when": "Mon 09/28", "time": "", "what": "Readings: Ch. 5 \u00b7 Ch. 6", "hard": false}, {"when": "Mon 09/28", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 10/02", "time": "11:59pm", "what": "Mastering Biology DSM: CH 5 & CH 6", "hard": true}, {"when": "Fri 10/02", "time": "11:59pm", "what": "WK 8 Practice Test", "hard": true}, {"when": "Fri 10/02", "time": "11:59pm", "what": "Lab 7 document \u2014 10 pts", "hard": true}, {"when": "Fri 10/02", "time": "11:59pm", "what": "Lab 8 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-2.html"}, {"n": 9, "dates": "Oct 5\u20139, 2026", "deadlines": [{"when": "Mon 10/05", "time": "", "what": "Readings: Ch. 7", "hard": false}, {"when": "Mon 10/05", "time": "", "what": "Unit 2 Exam", "hard": false}, {"when": "Fri 10/09", "time": "", "what": "Last day to drop a full-term class", "hard": false}, {"when": "Fri 10/09", "time": "11:59pm", "what": "Mastering Biology DSM: CH 7", "hard": true}, {"when": "Fri 10/09", "time": "11:59pm", "what": "WK 9 Practice Test", "hard": true}], "exam": "Unit 2 Exam", "exam_page": "exam-2.html"}, {"n": 10, "dates": "Oct 12\u201316, 2026", "deadlines": [{"when": "Mon 10/12", "time": "", "what": "Readings: Ch. 8 \u00b7 Ch. 8a", "hard": false}, {"when": "Mon 10/12", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 10/16", "time": "11:59pm", "what": "Mastering Biology DSM: CH 8", "hard": true}, {"when": "Fri 10/16", "time": "11:59pm", "what": "WK 10 Practice Test", "hard": true}, {"when": "Fri 10/16", "time": "11:59pm", "what": "Lab 9 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-3.html"}, {"n": 11, "dates": "Oct 19\u201323, 2026", "deadlines": [{"when": "Mon 10/19", "time": "", "what": "Readings: Ch. 9", "hard": false}, {"when": "Mon 10/19", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 10/23", "time": "", "what": "Extra credit \u2014 Padlet Encouragement Discussion", "hard": false}, {"when": "Fri 10/23", "time": "11:59pm", "what": "Mastering Biology DSM: CH 9", "hard": true}, {"when": "Fri 10/23", "time": "11:59pm", "what": "WK 11 Practice Test", "hard": true}, {"when": "Fri 10/23", "time": "11:59pm", "what": "Lab 10 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-3.html"}, {"n": 12, "dates": "Oct 26\u201330, 2026", "deadlines": [{"when": "Mon 10/26", "time": "", "what": "Readings: Ch. 10 \u00b7 Ch. 10a", "hard": false}, {"when": "Mon 10/26", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 10/30", "time": "11:59pm", "what": "Mastering Biology DSM: CH 10", "hard": true}, {"when": "Fri 10/30", "time": "11:59pm", "what": "WK 12 Practice Test", "hard": true}, {"when": "Fri 10/30", "time": "11:59pm", "what": "Lab 11 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-3.html"}, {"n": 13, "dates": "Nov 2\u20136, 2026", "deadlines": [{"when": "Mon 11/02", "time": "", "what": "Readings: Ch. 11", "hard": false}, {"when": "Mon 11/02", "time": "", "what": "Unit 3 Exam", "hard": false}, {"when": "Fri 11/06", "time": "11:59pm", "what": "Mastering Biology DSM: CH 11", "hard": true}, {"when": "Fri 11/06", "time": "11:59pm", "what": "WK 13 Practice Test", "hard": true}], "exam": "Unit 3 Exam", "exam_page": "exam-3.html"}, {"n": 14, "dates": "Nov 9\u201313, 2026", "deadlines": [{"when": "Mon 11/09", "time": "", "what": "Readings: Ch. 12 \u00b7 Ch. 12a \u00b7 Ch. 13 \u00b7 Ch. 13a", "hard": false}, {"when": "Mon 11/09", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 11/13", "time": "11:59pm", "what": "Mastering Biology DSM: CH 12 & CH 13", "hard": true}, {"when": "Fri 11/13", "time": "11:59pm", "what": "WK 14 Practice Test", "hard": true}, {"when": "Fri 11/13", "time": "11:59pm", "what": "Lab 12 document \u2014 10 pts", "hard": true}, {"when": "Fri 11/13", "time": "11:59pm", "what": "Lab 13 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-4.html"}, {"n": 15, "dates": "Nov 16\u201320, 2026", "deadlines": [{"when": "Mon 11/16", "time": "", "what": "Readings: Ch. 14 \u00b7 Ch. 16", "hard": false}, {"when": "Mon 11/16", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 11/20", "time": "11:59pm", "what": "Mastering Biology DSM: CH 14 & CH 16", "hard": true}, {"when": "Fri 11/20", "time": "11:59pm", "what": "WK 15 Practice Test", "hard": true}, {"when": "Fri 11/20", "time": "11:59pm", "what": "Lab 14 document \u2014 10 pts", "hard": true}, {"when": "Fri 11/20", "time": "11:59pm", "what": "Lab 15 document \u2014 10 pts", "hard": true}], "exam": "", "exam_page": "exam-4.html"}, {"n": 16, "dates": "Nov 23\u201327, 2026", "deadlines": [{"when": "Mon 11/23", "time": "", "what": "Readings: Ch. 17 \u00b7 Ch. 17a \u00b7 Ch. 18 \u00b7 Ch. 18a", "hard": false}, {"when": "Mon 11/23", "time": "", "what": "Board work sheet", "hard": false}, {"when": "Fri 11/27", "time": "11:59pm", "what": "Mastering Biology DSM: CH 17 & CH 18", "hard": true}, {"when": "Fri 11/27", "time": "11:59pm", "what": "WK 16 Practice Test", "hard": true}, {"when": "Fri 11/27", "time": "11:59pm", "what": "Lab 16 document \u2014 10 pts", "hard": true}, {"when": "Fri 12/04", "time": "", "what": "Extra credit \u2014 Supplemental Resource Review & Recommendation", "hard": false}], "exam": "", "exam_page": "exam-4.html"}, {"n": 17, "dates": "Nov 30 \u2013 Dec 4, 2026", "deadlines": [{"when": "Mon 11/30", "time": "", "what": "Readings: Ch. 22 \u00b7 Ch. 23 \u00b7 Ch. 24", "hard": false}, {"when": "Mon 11/30", "time": "", "what": "Unit 4 Exam", "hard": false}, {"when": "Fri 12/04", "time": "", "what": "SLO Post-Assessment", "hard": false}, {"when": "Fri 12/04", "time": "11:59pm", "what": "Mastering Biology DSM: CH 22 & CH 23 & CH 24", "hard": true}, {"when": "Fri 12/04", "time": "11:59pm", "what": "WK 17 Practice Test", "hard": true}], "exam": "Unit 4 Exam", "exam_page": "exam-4.html"}];
+  var YEAR = 2026;
+  function parseWhen(s){
+    var m = /(\d{1,2})\/(\d{1,2})/.exec(s || "");
+    if (!m) return null;
+    return new Date(YEAR, parseInt(m[1],10)-1, parseInt(m[2],10), 23, 59, 0);
+  }
+  var now = new Date();
+  var t = document.getElementById("today");
+  if (t) t.textContent = now.toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"});
+
+  // ---- next three deadlines
+  var all = [];
+  WEEKS.forEach(function(w){
+    (w.deadlines||[]).forEach(function(d){
+      var when = parseWhen(d.when);
+      if (when) all.push({n:w.n, when:when, label:d.when, time:d.time, what:d.what, hard:d.hard});
+    });
+  });
+  all.sort(function(a,b){ return a.when - b.when; });
+  var upcoming = all.filter(function(d){ return d.when >= now; }).slice(0,3);
+  var host = document.getElementById("next-dl");
+  if (host){
+    if (!upcoming.length){
+      host.innerHTML = '<li><span class="when">&mdash;</span><span class="what">Nothing left on the schedule.</span></li>';
+    } else {
+      host.innerHTML = upcoming.map(function(d){
+        var A = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var B = new Date(d.when.getFullYear(), d.when.getMonth(), d.when.getDate());
+        var days = Math.round((B - A) / 86400000);
+        var cd = days <= 0 ? "today" : (days === 1 ? "tomorrow" : "in " + days + " days");
+        return '<li' + (d.hard ? ' class="hard"' : '') + '>'
+          + '<span class="when">' + d.label + (d.time ? '<br><span class="t">' + d.time + '</span>' : '')
+          + '</span><span class="what"><strong>' + d.what + '</strong><br>'
+          + '<span class="countdown">Week ' + d.n + ' &middot; ' + cd + '</span></span></li>';
+      }).join("");
+    }
+  }
+
+  // ---- exam weeks
+  var ex = WEEKS.filter(function(w){ return w.exam; });
+  var eh = document.getElementById("exam-weeks");
+  if (eh) eh.innerHTML = ex.length
+    ? ex.map(function(w){ return '<li><strong>Week ' + w.n + '</strong> &mdash; '
+        + (w.exam_page ? '<a href="' + w.exam_page + '">' + w.exam + '</a>' : w.exam)
+        + ' <span class="when">' + w.dates + '</span></li>'; }).join("")
+    : '<li>None recorded.</li>';
+
+  // ---- current / past week shading
+  WEEKS.forEach(function(w){
+    var card = document.querySelector('.wk[data-week="' + w.n + '"]');
+    if (!card) return;
+    var mon = new Date(YEAR, 7, 10);
+    mon.setDate(mon.getDate() + (w.n - 1) * 7);
+    var fri = new Date(mon); fri.setDate(fri.getDate() + 4); fri.setHours(23,59,59);
+    if (now >= mon && now <= fri){
+      card.classList.add("is-now");
+      var h = card.querySelector(".wkhead");
+      if (h) h.insertAdjacentHTML("beforeend", '<span class="wknow">this week</span>');
+    } else if (now > fri){
+      card.classList.add("is-past");
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
