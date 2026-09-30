@@ -554,6 +554,25 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qcard.fc .qact{margin-top:auto}
 .qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
 .qcard.fc .why p{font-size:1rem;line-height:1.55}
+/* Diagram stations. One drawing, numbered markers, one reveal per pin -- laid
+   out as a grid so twenty labels do not become a twenty-line column. */
+.qhead .qmulti.dx{color:var(--accent);background:var(--accent-soft)}
+.qcard.dx figure{margin:2px 0 14px}
+.qcard.dx figure svg{display:block;width:100%;height:auto;max-width:640px;max-height:480px;margin:0 auto}
+.qcard.dx ol.pins{list-style:none;margin:0;padding:0;max-width:none;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:5px 14px}
+.qcard.dx ol.pins>li{margin:0}
+.qcard.dx ol.pins .reveal{margin:0;border-radius:8px}
+.qcard.dx ol.pins summary{padding:5px 9px;font-size:.9375rem}
+.qcard.dx ol.pins .body{padding:2px 9px 9px}
+.qcard.dx ol.pins .body p{margin:0 0 3px;font-size:.9375rem}
+.qcard.dx ol.pins .body p:last-child{margin:0;color:var(--muted);font-size:.875rem}
+.qcard.dx .pinq{color:var(--muted);font-style:italic}
+.qcard.dx .reveal[open] .pinq{display:none}
+/* On a phone the height cap is counterproductive -- it letterboxes a portrait
+   diagram down to two-thirds of the column and shrinks the markers with it.
+   Let it run tall instead; scrolling is cheaper than squinting. */
+@media (max-width:720px){ .qcard.dx figure svg{max-height:none} }
 ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
 ul.opts li{margin:0;position:relative}
 ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
@@ -621,7 +640,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     <a class="backlink" href="index.html" title="Back to all seventeen weeks"><span class="arw" aria-hidden="true">&larr;</span><span class="btxt">All weeks</span></a>
     <div class="inner" aria-label="Exams">
       <a class="xtab" href="exam-1.html" aria-current="false">Unit 1<span class="xst">387 Qs</span></a>
-      <a class="xtab" href="exam-2.html" aria-current="false">Unit 2<span class="xst">342 Qs</span></a>
+      <a class="xtab" href="exam-2.html" aria-current="false">Unit 2<span class="xst">348 Qs</span></a>
       <a class="xtab" href="exam-3.html" aria-current="false">Unit 3<span class="xst">shell</span></a>
       <a class="xtab" href="exam-4.html" aria-current="false">Unit 4<span class="xst">shell</span></a>
       <a class="xtab is-current" href="exam-final.html" aria-current="page">Final<span class="xst">shell</span></a>

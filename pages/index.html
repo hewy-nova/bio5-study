@@ -554,6 +554,25 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qcard.fc .qact{margin-top:auto}
 .qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
 .qcard.fc .why p{font-size:1rem;line-height:1.55}
+/* Diagram stations. One drawing, numbered markers, one reveal per pin -- laid
+   out as a grid so twenty labels do not become a twenty-line column. */
+.qhead .qmulti.dx{color:var(--accent);background:var(--accent-soft)}
+.qcard.dx figure{margin:2px 0 14px}
+.qcard.dx figure svg{display:block;width:100%;height:auto;max-width:640px;max-height:480px;margin:0 auto}
+.qcard.dx ol.pins{list-style:none;margin:0;padding:0;max-width:none;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:5px 14px}
+.qcard.dx ol.pins>li{margin:0}
+.qcard.dx ol.pins .reveal{margin:0;border-radius:8px}
+.qcard.dx ol.pins summary{padding:5px 9px;font-size:.9375rem}
+.qcard.dx ol.pins .body{padding:2px 9px 9px}
+.qcard.dx ol.pins .body p{margin:0 0 3px;font-size:.9375rem}
+.qcard.dx ol.pins .body p:last-child{margin:0;color:var(--muted);font-size:.875rem}
+.qcard.dx .pinq{color:var(--muted);font-style:italic}
+.qcard.dx .reveal[open] .pinq{display:none}
+/* On a phone the height cap is counterproductive -- it letterboxes a portrait
+   diagram down to two-thirds of the column and shrinks the markers with it.
+   Let it run tall instead; scrolling is cheaper than squinting. */
+@media (max-width:720px){ .qcard.dx figure svg{max-height:none} }
 ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
 ul.opts li{margin:0;position:relative}
 ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
@@ -614,8 +633,8 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     </div>
     <div class="gcard">
       <p class="gh">Progress</p>
-      <div class="bar"><i style="width:30%"></i></div>
-      <p class="pstat"><b>30</b> of <b>99</b> tabs ingested &middot; 30%</p>
+      <div class="bar"><i style="width:31%"></i></div>
+      <p class="pstat"><b>31</b> of <b>99</b> tabs ingested &middot; 31%</p>
       <p class="gh" style="margin-top:15px">Exam weeks</p>
       <ul id="exam-weeks"><li>&mdash;</li></ul>
     </div>
@@ -636,7 +655,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   <div class="wkhead"><span class="wknum">Unit 2</span><span class="wkdates">Mon 10/05</span></div>
   <h3><a href="exam-2.html">Unit 2 Exam</a></h3>
   
-  <p class="wklab">Monday 10/05, in the lab period · 200 pts<br><span class="srcnote">342 questions &middot; 10 of 10 topics banked</span></p>
+  <p class="wklab">Monday 10/05, in the lab period · 200 pts<br><span class="srcnote">348 questions &middot; 10 of 10 topics banked</span></p>
   <ul class="statusrow"><li><span class="chip-s done">Ch. 4</span></li><li><span class="chip-s done">Ch. 3 · Respiration</span></li><li><span class="chip-s done">Ch. 15</span></li><li><span class="chip-s done">Ch. 15a</span></li><li><span class="chip-s done">Ch. 5</span></li><li><span class="chip-s done">Ch. 6</span></li><li><span class="chip-s done">Lab 5</span></li><li><span class="chip-s done">Lab 6</span></li><li><span class="chip-s done">Lab 7</span></li><li><span class="chip-s done">Lab 8</span></li></ul>
 </article>
 <article class="wk xk is-shell">
@@ -711,7 +730,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   <h3><a href="week-07.html">Digestive System, Nutrition &amp; Cell Respiration</a></h3>
   
   <p class="wklab">Lab 5 &mdash; Intro to Anatomy, Tissues &amp; Integumentary<br><span class="srcnote">Monday 09/21 — moved here from 09/14 · Canvas puts Lab 6 in this slot; Whalen said Lab 5</span></p>
-  <ul class="statusrow"><li><span class="chip-s done">Ch. 3</span></li><li><span class="chip-s done">Ch. 15</span></li><li><span class="chip-s done">Ch. 15a</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s stale">Synthesized</span></li></ul>
+  <ul class="statusrow"><li><span class="chip-s done">Ch. 3</span></li><li><span class="chip-s done">Ch. 15</span></li><li><span class="chip-s done">Ch. 15a</span></li><li><span class="chip-s done">Board Work</span></li><li><span class="chip-s done">Lecture 1</span></li><li><span class="chip-s done">Lecture 2</span></li><li><span class="chip-s done">Synthesized</span></li></ul>
 </article>
 <article class="wk" data-week="8">
   <div class="wkhead"><span class="wknum">Week 8</span><span class="wkdates">Sep 28 – Oct 2, 2026</span></div>
