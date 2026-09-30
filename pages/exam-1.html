@@ -554,25 +554,6 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qcard.fc .qact{margin-top:auto}
 .qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
 .qcard.fc .why p{font-size:1rem;line-height:1.55}
-/* Diagram stations. One drawing, numbered markers, one reveal per pin -- laid
-   out as a grid so twenty labels do not become a twenty-line column. */
-.qhead .qmulti.dx{color:var(--accent);background:var(--accent-soft)}
-.qcard.dx figure{margin:2px 0 14px}
-.qcard.dx figure svg{display:block;width:100%;height:auto;max-width:640px;max-height:480px;margin:0 auto}
-.qcard.dx ol.pins{list-style:none;margin:0;padding:0;max-width:none;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:5px 14px}
-.qcard.dx ol.pins>li{margin:0}
-.qcard.dx ol.pins .reveal{margin:0;border-radius:8px}
-.qcard.dx ol.pins summary{padding:5px 9px;font-size:.9375rem}
-.qcard.dx ol.pins .body{padding:2px 9px 9px}
-.qcard.dx ol.pins .body p{margin:0 0 3px;font-size:.9375rem}
-.qcard.dx ol.pins .body p:last-child{margin:0;color:var(--muted);font-size:.875rem}
-.qcard.dx .pinq{color:var(--muted);font-style:italic}
-.qcard.dx .reveal[open] .pinq{display:none}
-/* On a phone the height cap is counterproductive -- it letterboxes a portrait
-   diagram down to two-thirds of the column and shrinks the markers with it.
-   Let it run tall instead; scrolling is cheaper than squinting. */
-@media (max-width:720px){ .qcard.dx figure svg{max-height:none} }
 ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
 ul.opts li{margin:0;position:relative}
 ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
@@ -1121,7 +1102,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   function load(k){ try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e){ return {}; } }
   function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 
-  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true, dx:true}, missedOnly = false;
+  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false;
   var missed = load(KEY + "-missed"), results = {}, mockSet = null, timer = null, t0 = 0;
 
   // ---- visibility
@@ -1185,12 +1166,6 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     c.querySelector(".qself").hidden = false;
     c.classList.add("is-locked");
   }
-  // A diagram station has no single .why -- every pin is its own <details>.
-  function revealDX(c){
-    all("details", c).forEach(function(d){ d.open = true; });
-    c.querySelector(".qself").hidden = false;
-    c.classList.add("is-locked");
-  }
   function markSA(c, right){
     c.classList.remove("is-right", "is-wrong");
     c.classList.add(right ? "is-right" : "is-wrong");
@@ -1206,23 +1181,18 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     all("input", c).forEach(function(i){ i.checked = false; i.disabled = false; });
     all("li", c).forEach(function(li){ li.classList.remove("is-key", "is-miss"); });
     var ta = c.querySelector("textarea"); if (ta) ta.value = "";
-    all("details", c).forEach(function(d){ d.open = false; });
-    var why = c.querySelector(".why"); if (why) why.hidden = true;
+    c.querySelector(".why").hidden = true;
     var self = c.querySelector(".qself"); if (self) self.hidden = true;
     var res = c.querySelector(".qres"); res.textContent = ""; res.className = "qres";
   }
 
   body.addEventListener("click", function(e){
     var b = e.target.closest ? e.target.closest("button") : null;
-    if (!b || b.closest("summary")) return;
+    if (!b) return;
     var c = b.closest(".qcard");
     if (!c) return;
     if (b.classList.contains("qcheck")) gradeMC(c, false);
-    else if (b.classList.contains("qshow")) {
-      if (c.dataset.kind === "mc") gradeMC(c, true);
-      else if (c.dataset.kind === "dx") revealDX(c);
-      else revealSA(c);
-    }
+    else if (b.classList.contains("qshow")) { c.dataset.kind === "mc" ? gradeMC(c, true) : revealSA(c); }
     else if (b.classList.contains("qgot")) markSA(c, true);
     else if (b.classList.contains("qmiss")) markSA(c, false);
   });
