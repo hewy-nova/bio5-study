@@ -545,7 +545,16 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qhead .srcs{margin:0 0 0 auto}
 .qhead .qmulti{color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
 .qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
+.qhead .qmulti.fc{color:var(--src-book);background:var(--src-book-soft)}
 .qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
+/* Flashcards. The front is the whole card until it is flipped, so the prompt
+   is set larger and the card is given a minimum height -- otherwise a deck
+   jumps around as each two-word front is revealed into a four-line back. */
+.qcard.fc{min-height:150px;display:flex;flex-direction:column}
+.qcard.fc .stem{font-family:var(--f-display);font-size:1.22rem;line-height:1.35;margin:4px 0 14px;max-width:60ch}
+.qcard.fc .qact{margin-top:auto}
+.qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
+.qcard.fc .why p{font-size:1rem;line-height:1.55}
 ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
 ul.opts li{margin:0;position:relative}
 ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
@@ -643,7 +652,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
       <button role="tab" id="tab-lec2" aria-controls="panel-lec2" aria-selected="false" tabindex="-1">Lecture 2</button>
       <button role="tab" id="tab-synth" aria-controls="panel-synth" aria-selected="false" tabindex="-1">Synthesized</button>
     </div>
-    <a class="backlink examlink" href="exam-2.html" title="Practice questions for the Unit 2 Exam"><span class="btxt">Unit 2 practice</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+
   </div>
 
 <div role="tabpanel" id="panel-ch7" aria-labelledby="tab-ch7">

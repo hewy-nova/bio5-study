@@ -544,7 +544,16 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qhead .srcs{margin:0 0 0 auto}
 .qhead .qmulti{color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
 .qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
+.qhead .qmulti.fc{color:var(--src-book);background:var(--src-book-soft)}
 .qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
+/* Flashcards. The front is the whole card until it is flipped, so the prompt
+   is set larger and the card is given a minimum height -- otherwise a deck
+   jumps around as each two-word front is revealed into a four-line back. */
+.qcard.fc{min-height:150px;display:flex;flex-direction:column}
+.qcard.fc .stem{font-family:var(--f-display);font-size:1.22rem;line-height:1.35;margin:4px 0 14px;max-width:60ch}
+.qcard.fc .qact{margin-top:auto}
+.qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
+.qcard.fc .why p{font-size:1rem;line-height:1.55}
 ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
 ul.opts li{margin:0;position:relative}
 ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
@@ -625,7 +634,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     <a class="backlink" href="index.html" title="Back to all seventeen weeks"><span class="arw" aria-hidden="true">&larr;</span><span class="btxt">All weeks</span></a>
     <div class="inner" aria-label="Exams">
       <a class="xtab" href="exam-1.html" aria-current="false">Unit 1<span class="xst">387 Qs</span></a>
-      <a class="xtab" href="exam-2.html" aria-current="false">Unit 2<span class="xst">shell</span></a>
+      <a class="xtab" href="exam-2.html" aria-current="false">Unit 2<span class="xst">342 Qs</span></a>
       <a class="xtab is-current" href="exam-3.html" aria-current="page">Unit 3<span class="xst">shell</span></a>
       <a class="xtab" href="exam-4.html" aria-current="false">Unit 4<span class="xst">shell</span></a>
       <a class="xtab" href="exam-final.html" aria-current="false">Final<span class="xst">shell</span></a>
