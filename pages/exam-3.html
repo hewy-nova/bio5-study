@@ -81,6 +81,11 @@
 }
 
 *{box-sizing:border-box}
+/* `hidden` has to beat every author `display:` below it. The browser's own
+   [hidden]{display:none} is a user-agent rule, so any rule in this sheet that
+   sets display outranks it -- .qcard.fc{display:flex} did exactly that, and
+   flashcards stayed on screen through every filter the exam pages have. */
+[hidden]{display:none!important}
 /* Text selection: white ground, black ink, in both themes. Only colour and
    background-color are honoured on ::selection, so nothing else is set here. */
 ::selection{background:#FFFFFF;color:#000000}
