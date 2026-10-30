@@ -551,6 +551,7 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
 .qhead .qmulti.fc{color:var(--src-book);background:var(--src-book-soft)}
 .qhead .qsaid{color:var(--alert);background:var(--alert-soft);border:1px solid var(--alert-rule);border-radius:5px;padding:0 6px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem;font-weight:700;cursor:help}
+.qhead .qlevel{color:var(--muted);border:1px dashed var(--rule);border-radius:5px;padding:0 6px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
 .why .saidq{margin-top:.5em;font-size:.9em}
 .qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
 /* Flashcards. The front is the whole card until it is flipped, so the prompt
@@ -1109,7 +1110,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   function load(k){ try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e){ return {}; } }
   function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 
-  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false, saidOnly = false;
+  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false, saidOnly = false, depth = {core:true, detail:true};
   var missed = load(KEY + "-missed"), results = {}, mockSet = null, timer = null, t0 = 0;
 
   // ---- visibility
@@ -1119,6 +1120,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     if (!kinds[c.dataset.kind]) return false;
     if (missedOnly && !missed[c.id]) return false;
     if (saidOnly && !c.dataset.said) return false;
+    if (c.dataset.level && !depth[c.dataset.level]) return false;
     return true;
   }
   function apply(){
@@ -1232,6 +1234,16 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
       // never leave every kind off -- the page would look empty and broken
       if (!all(".qk").some(function(x){ return kinds[x.dataset.k]; })) kinds[k] = true;
       b.classList.toggle("is-on", kinds[k]);
+      apply();
+    });
+  });
+  all(".qd").forEach(function(b){
+    b.addEventListener("click", function(){
+      var d = b.dataset.d;
+      depth[d] = !depth[d];
+      // never leave both depths off
+      if (!all(".qd").some(function(x){ return depth[x.dataset.d]; })) depth[d] = true;
+      b.classList.toggle("is-on", depth[d]);
       apply();
     });
   });
