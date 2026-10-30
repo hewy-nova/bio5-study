@@ -550,6 +550,8 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qhead .qmulti{color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
 .qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
 .qhead .qmulti.fc{color:var(--src-book);background:var(--src-book-soft)}
+.qhead .qsaid{color:var(--alert);background:var(--alert-soft);border:1px solid var(--alert-rule);border-radius:5px;padding:0 6px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem;font-weight:700;cursor:help}
+.why .saidq{margin-top:.5em;font-size:.9em}
 .qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
 /* Flashcards. The front is the whole card until it is flipped, so the prompt
    is set larger and the card is given a minimum height -- otherwise a deck
@@ -1107,7 +1109,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   function load(k){ try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e){ return {}; } }
   function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 
-  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false;
+  var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false, saidOnly = false;
   var missed = load(KEY + "-missed"), results = {}, mockSet = null, timer = null, t0 = 0;
 
   // ---- visibility
@@ -1116,13 +1118,14 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     if (topics && !topics[c.dataset.topic]) return false;
     if (!kinds[c.dataset.kind]) return false;
     if (missedOnly && !missed[c.id]) return false;
+    if (saidOnly && !c.dataset.said) return false;
     return true;
   }
   function apply(){
     cards.forEach(function(c){ c.hidden = !visible(c); });
     groups.forEach(function(g){
       g.hidden = mode === "mock" || !all(".qcard", g).some(function(c){ return !c.hidden; })
-                 && !(g.querySelector(".slot") && (!topics || topics[g.dataset.topic]) && !missedOnly);
+                 && !(g.querySelector(".slot") && (!topics || topics[g.dataset.topic]) && !missedOnly && !saidOnly);
     });
     status();
   }
@@ -1206,15 +1209,17 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   all(".qt").forEach(function(b){
     b.addEventListener("click", function(){
       var t = b.dataset.t;
-      if (t === "all"){ topics = null; missedOnly = false; }
+      if (t === "all"){ topics = null; missedOnly = false; saidOnly = false; }
       else if (t === "missed"){ missedOnly = !missedOnly; }
+      else if (t === "said"){ saidOnly = !saidOnly; }
       else {
         topics = topics || {};
         if (topics[t]) delete topics[t]; else topics[t] = true;
         if (!Object.keys(topics).length) topics = null;
       }
       all(".qt").forEach(function(x){
-        var on = x.dataset.t === "all" ? !topics : x.dataset.t === "missed" ? missedOnly : !!(topics && topics[x.dataset.t]);
+        var on = x.dataset.t === "all" ? !topics : x.dataset.t === "missed" ? missedOnly
+               : x.dataset.t === "said" ? saidOnly : !!(topics && topics[x.dataset.t]);
         x.classList.toggle("is-on", on);
       });
       apply();
@@ -1231,7 +1236,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     });
   });
   $("qforget").addEventListener("click", function(){
-    missed = {}; save(KEY + "-missed", missed); missedOnly = false;
+    missed = {}; save(KEY + "-missed", missed); missedOnly = false; saidOnly = false;
     all(".qt").forEach(function(x){ x.classList.toggle("is-on", x.dataset.t === "all"); });
     topics = null; apply();
   });
