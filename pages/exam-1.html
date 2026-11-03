@@ -530,6 +530,8 @@ ul.scope .fine{color:var(--muted);font-size:.8125rem}
 .qbtn.primary:hover{background:var(--accent);color:var(--chip-ink)}
 .qbtn[disabled]{opacity:.45;cursor:default}
 .qbtn.qforget{border-style:dashed}
+.qbtn .qcn{margin-left:6px;opacity:.6;font-size:.7rem}
+.qbtn.is-on .qcn{opacity:.85}
 .qstatus{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);margin-left:6px}
 .qstatus b{color:var(--ink);font-weight:500}
 .qmock{padding:18px 22px}
@@ -651,8 +653,9 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 
 <div class="card qcontrols" id="qc" data-mockmc="50" data-mocksa="5">
   <div class="qrow"><span class="ql">Mode</span><button type="button" class="qbtn qm is-on" data-mode="study">Study</button><button type="button" class="qbtn qm" data-mode="mock">Mock exam</button><span class="qhint" id="qhint">Answer one at a time and see why.</span></div>
-  <div class="qrow"><span class="ql">Topics</span><button type="button" class="qbtn qt is-on" data-t="all">All</button><button type="button" class="qbtn qt" data-t="ch1">Ch. 1</button><button type="button" class="qbtn qt" data-t="ch2">Ch. 2</button><button type="button" class="qbtn qt" data-t="ch3">Ch. 3</button><button type="button" class="qbtn qt" data-t="ch19">Ch. 19</button><button type="button" class="qbtn qt" data-t="ch20">Ch. 20</button><button type="button" class="qbtn qt" data-t="ch21">Ch. 21</button><button type="button" class="qbtn qt" data-t="lab1">Lab 1</button><button type="button" class="qbtn qt" data-t="lab2">Lab 2</button><button type="button" class="qbtn qt" data-t="lab3">Lab 3</button><button type="button" class="qbtn qt" data-t="lab4">Lab 4</button><button type="button" class="qbtn qt qmissed" data-t="missed">Missed <span id="qmissedn">0</span></button><button type="button" class="qbtn qforget" id="qforget" hidden>forget missed</button></div>
+  <div class="qrow"><span class="ql">Topics</span><button type="button" class="qbtn qt is-on" data-t="all">All</button><button type="button" class="qbtn qt" data-t="ch1">Ch. 1<span class="qcn">41</span></button><button type="button" class="qbtn qt" data-t="ch2">Ch. 2<span class="qcn">60</span></button><button type="button" class="qbtn qt" data-t="ch3">Ch. 3<span class="qcn">46</span></button><button type="button" class="qbtn qt" data-t="ch19">Ch. 19<span class="qcn">55</span></button><button type="button" class="qbtn qt" data-t="ch20">Ch. 20<span class="qcn">49</span></button><button type="button" class="qbtn qt" data-t="ch21">Ch. 21<span class="qcn">63</span></button><button type="button" class="qbtn qt" data-t="lab1">Lab 1<span class="qcn">15</span></button><button type="button" class="qbtn qt" data-t="lab2">Lab 2<span class="qcn">17</span></button><button type="button" class="qbtn qt" data-t="lab3">Lab 3<span class="qcn">20</span></button><button type="button" class="qbtn qt" data-t="lab4">Lab 4<span class="qcn">21</span></button><button type="button" class="qbtn qt qmissed" data-t="missed">Missed <span id="qmissedn">0</span></button><button type="button" class="qbtn qforget" id="qforget" hidden>forget missed</button></div>
   <div class="qrow"><span class="ql">Kind</span><button type="button" class="qbtn qk is-on" data-k="mc">Multiple choice</button><button type="button" class="qbtn qk is-on" data-k="sa">Short answer</button></div>
+  <div class="qrow" id="qcountrow"><span class="ql">How many</span><button type="button" class="qbtn qlim is-on" data-lim="0">All</button><button type="button" class="qbtn qlim" data-lim="10">10</button><button type="button" class="qbtn qlim" data-lim="20">20</button><button type="button" class="qbtn qlim" data-lim="40">40</button><button type="button" class="qbtn primary" id="qnewset" hidden>New set</button><span class="qhint" id="qsethint">Questions you haven’t tried come first, then ones you missed.</span></div>
   <div class="qrow"><span class="ql"></span><button type="button" class="qbtn" id="qshuffle">Shuffle</button><button type="button" class="qbtn" id="qreset">Start over</button><span class="qstatus" id="qstatus"></span></div>
 </div>
 <div class="card qmock" id="qmock" hidden>
@@ -1112,10 +1115,16 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 
   var mode = "study", topics = null, kinds = {mc:true, sa:true, fc:true}, missedOnly = false, saidOnly = false, depth = {core:true, detail:true};
   var missed = load(KEY + "-missed"), results = {}, mockSet = null, timer = null, t0 = 0;
+  // a set: `limit` cards drawn from what the filters pass; `seen` is every card ever answered here
+  var full = !!$("qcountrow"), limit = 0, setIds = null, seen = load(KEY + "-seen");
 
   // ---- visibility
   function visible(c){
     if (mode === "mock") return !!(mockSet && mockSet[c.id]);
+    if (setIds) return !!setIds[c.id];
+    return passes(c);
+  }
+  function passes(c){
     if (topics && !topics[c.dataset.topic]) return false;
     if (!kinds[c.dataset.kind]) return false;
     if (missedOnly && !missed[c.id]) return false;
@@ -1127,7 +1136,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     cards.forEach(function(c){ c.hidden = !visible(c); });
     groups.forEach(function(g){
       g.hidden = mode === "mock" || !all(".qcard", g).some(function(c){ return !c.hidden; })
-                 && !(g.querySelector(".slot") && (!topics || topics[g.dataset.topic]) && !missedOnly && !saidOnly);
+                 && !(g.querySelector(".slot") && (!topics || topics[g.dataset.topic]) && !missedOnly && !saidOnly && !setIds);
     });
     status();
   }
@@ -1135,6 +1144,13 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     var v = cards.filter(visible);
     var ans = v.filter(function(c){ return c.id in results; });
     var ok = ans.filter(function(c){ return results[c.id]; });
+    if (setIds && mode !== "mock"){
+      var pool = cards.filter(passes), fresh = pool.filter(function(c){ return !seen[c.id]; }).length;
+      $("qstatus").innerHTML = (v.length && ans.length === v.length
+          ? "Set done &middot; <b>" + ok.length + "</b> / " + v.length + " right"
+          : "<b>" + ans.length + "</b> / " + v.length + " answered &middot; <b>" + ok.length + "</b> right")
+        + " &middot; from " + pool.length + ", <b>" + fresh + "</b> never tried";
+    } else
     $("qstatus").innerHTML = "<b>" + v.length + "</b> showing &middot; <b>" + ans.length
       + "</b> answered &middot; <b>" + ok.length + "</b> correct";
     var n = Object.keys(missed).length;
@@ -1150,6 +1166,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     results[c.id] = right;
     if (right) delete missed[c.id]; else missed[c.id] = 1;
     save(KEY + "-missed", missed);
+    seen[c.id] = 1; save(KEY + "-seen", seen);
   }
   function gradeMC(c, force){
     if (c.classList.contains("is-locked")) return;
@@ -1219,14 +1236,30 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
         if (topics[t]) delete topics[t]; else topics[t] = true;
         if (!Object.keys(topics).length) topics = null;
       }
-      all(".qt").forEach(function(x){
-        var on = x.dataset.t === "all" ? !topics : x.dataset.t === "missed" ? missedOnly
-               : x.dataset.t === "said" ? saidOnly : !!(topics && topics[x.dataset.t]);
-        x.classList.toggle("is-on", on);
-      });
-      apply();
+      paint();
+      refresh();
     });
   });
+  function paint(){
+    all(".qt").forEach(function(x){
+      var on = x.dataset.t === "all" ? !topics : x.dataset.t === "missed" ? missedOnly
+             : x.dataset.t === "said" ? saidOnly : !!(topics && topics[x.dataset.t]);
+      x.classList.toggle("is-on", on);
+    });
+    all(".qk").forEach(function(x){ x.classList.toggle("is-on", !!kinds[x.dataset.k]); });
+    all(".qd").forEach(function(x){ x.classList.toggle("is-on", !!depth[x.dataset.d]); });
+    all(".qlim").forEach(function(x){ x.classList.toggle("is-on", +x.dataset.lim === limit); });
+    if (full) $("qnewset").hidden = !limit;
+  }
+  // after any filter change: redraw the set from the new pool, remember the filters
+  function refresh(){
+    if (mode !== "mock"){
+      if (limit) draw();
+      else if (setIds){ setIds = null; unshuffle(); }
+    }
+    if (full) save(KEY + "-prefs", {topics: topics, kinds: kinds, depth: depth, said: saidOnly, limit: limit});
+    apply();
+  }
   all(".qk").forEach(function(b){
     b.addEventListener("click", function(){
       var k = b.dataset.k;
@@ -1234,7 +1267,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
       // never leave every kind off -- the page would look empty and broken
       if (!all(".qk").some(function(x){ return kinds[x.dataset.k]; })) kinds[k] = true;
       b.classList.toggle("is-on", kinds[k]);
-      apply();
+      refresh();
     });
   });
   all(".qd").forEach(function(b){
@@ -1244,13 +1277,13 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
       // never leave both depths off
       if (!all(".qd").some(function(x){ return depth[x.dataset.d]; })) depth[d] = true;
       b.classList.toggle("is-on", depth[d]);
-      apply();
+      refresh();
     });
   });
   $("qforget").addEventListener("click", function(){
     missed = {}; save(KEY + "-missed", missed); missedOnly = false; saidOnly = false;
     all(".qt").forEach(function(x){ x.classList.toggle("is-on", x.dataset.t === "all"); });
-    topics = null; apply();
+    topics = null; refresh();
   });
   function shuffle(a){
     for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
@@ -1262,26 +1295,63 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
   function unshuffle(){
     var h = $("shufhost");
     if (!h) return;
-    cards.slice().sort(byIndex).forEach(function(c){ home[c.id].appendChild(c); });
+    cards.slice().sort(byIndex).forEach(function(c){
+      c.querySelector(".qn").textContent = c.querySelector(".qn").dataset.n;
+      home[c.id].appendChild(c);
+    });
     h.parentNode.removeChild(h);
     $("qshuffle").classList.remove("is-on");
   }
-  $("qshuffle").addEventListener("click", function(){
-    if (mode === "mock") return;
+  function host(intro){
     var h = $("shufhost");
     if (!h){
       h = document.createElement("section"); h.id = "shufhost"; h.className = "tgroup";
-      h.innerHTML = '<h2>Shuffled</h2><p class="tnote">Every topic mixed together. The topic and kind filters still apply; Start over restores the order.</p>';
       body.insertBefore(h, body.firstChild);
     }
+    h.innerHTML = intro;
+    return h;
+  }
+  // ---- a set: `limit` cards spread over the selected topics in proportion,
+  // never-tried first, then missed, then the rest; shuffled into one run
+  function rank(c){ return !seen[c.id] ? 0 : missed[c.id] ? 1 : 2; }
+  function freshFirst(a){ return shuffle(a.slice()).sort(function(x, y){ return rank(x) - rank(y); }); }
+  function draw(){
+    unshuffle();
+    var picked = shuffle(sample(cards.filter(passes), limit, freshFirst));
+    var h = host('<h2>' + picked.length + (picked.length === 1 ? ' question' : ' questions') + '</h2>'
+      + '<p class="tnote">Drawn from the filters above. New set draws another; Start over clears this one.</p>');
+    setIds = {};
+    picked.forEach(function(c, i){
+      resetCard(c); delete results[c.id]; setIds[c.id] = true;
+      c.querySelector(".qn").textContent = i + 1; h.appendChild(c);
+    });
+  }
+  $("qshuffle").addEventListener("click", function(){
+    if (mode === "mock") return;
+    if (setIds){
+      var h = $("shufhost");
+      shuffle(cards.filter(function(c){ return setIds[c.id]; })).forEach(function(c, i){
+        c.querySelector(".qn").textContent = i + 1; h.appendChild(c);
+      });
+      window.scrollTo({top: $("qc").offsetTop - 12, behavior: "smooth"});
+      return;
+    }
+    var h = $("shufhost") || host('<h2>Shuffled</h2><p class="tnote">Every topic mixed together. The topic and kind filters still apply; Start over restores the order.</p>');
     shuffle(cards.slice()).forEach(function(c){ h.appendChild(c); });
     $("qshuffle").classList.add("is-on");
     apply();
     window.scrollTo({top: $("qc").offsetTop - 12, behavior: "smooth"});
   });
   $("qreset").addEventListener("click", function(){
-    unshuffle();
+    if (!setIds) unshuffle();
     results = {}; cards.forEach(resetCard); $("qscore").hidden = true; apply();
+  });
+  all(".qlim").forEach(function(b){
+    b.addEventListener("click", function(){ limit = +b.dataset.lim; paint(); refresh(); });
+  });
+  if (full) $("qnewset").addEventListener("click", function(){
+    draw(); apply();
+    window.scrollTo({top: $("qc").offsetTop - 12, behavior: "smooth"});
   });
 
   // ---- mock exam
@@ -1289,24 +1359,24 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     b.addEventListener("click", function(){
       var m = b.dataset.mode;
       if (m === mode) return;
-      if (m === "mock"){ mode = "mock"; mockSet = {}; $("qmock").hidden = false; document.body.classList.add("is-mock"); }
+      if (m === "mock"){ unshuffle(); mode = "mock"; mockSet = {}; $("qmock").hidden = false; document.body.classList.add("is-mock"); }
       else exitMock();
       all(".qm").forEach(function(x){ x.classList.toggle("is-on", x.dataset.mode === mode); });
       $("qhint").textContent = mode === "mock" ? "Nothing is marked until you submit." : "Answer one at a time and see why.";
       apply();
     });
   });
-  function sample(pool, want){
+  function sample(pool, want, order){
+    order = order || function(a){ return shuffle(a.slice()); };
     var byT = {}; pool.forEach(function(c){ (byT[c.dataset.topic] = byT[c.dataset.topic] || []).push(c); });
     var picked = [], ids = Object.keys(byT);
     ids.forEach(function(t){
       var n = Math.max(1, Math.round(want * byT[t].length / pool.length));
-      picked = picked.concat(shuffle(byT[t].slice()).slice(0, n));
+      picked = picked.concat(order(byT[t]).slice(0, n));
     });
     while (picked.length > want) picked.splice(Math.floor(Math.random() * picked.length), 1);
-    var rest = pool.filter(function(c){ return picked.indexOf(c) < 0; });
-    shuffle(rest);
-    while (picked.length < want && rest.length) picked.push(rest.pop());
+    var rest = order(pool.filter(function(c){ return picked.indexOf(c) < 0; }));
+    while (picked.length < want && rest.length) picked.push(rest.shift());
     return picked;
   }
   function tick(){
@@ -1385,6 +1455,7 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     mode = "study"; mockSet = null; document.body.classList.remove("is-mock");
     $("qmock").hidden = true; $("qstart").hidden = false; $("qsubmit").hidden = true; $("qexit").hidden = true;
     $("qtimer").textContent = "";
+    if (limit) draw();
   }
   $("qexit").addEventListener("click", function(){
     exitMock();
@@ -1393,9 +1464,51 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
     apply();
   });
 
+  // the filters from last visit, on the site page only
+  if (full){
+    var p = load(KEY + "-prefs");
+    if (p.topics){
+      topics = {};
+      Object.keys(p.topics).forEach(function(t){ if (all('.qt[data-t="' + t + '"]').length) topics[t] = true; });
+      if (!Object.keys(topics).length) topics = null;
+    }
+    if (p.kinds) all(".qk").forEach(function(x){ kinds[x.dataset.k] = p.kinds[x.dataset.k] !== false; });
+    if (!all(".qk").some(function(x){ return kinds[x.dataset.k]; })) all(".qk").forEach(function(x){ kinds[x.dataset.k] = true; });
+    if (p.depth){ depth.core = p.depth.core !== false; depth.detail = p.depth.detail !== false; if (!depth.core && !depth.detail) depth = {core:true, detail:true}; }
+    saidOnly = !!p.said && !!document.querySelector('.qt[data-t="said"]');
+    limit = [10, 20, 40].indexOf(p.limit) >= 0 ? p.limit : 0;
+    paint();
+    if (limit) draw();
+  }
   apply();
 })();
 </script>
 
+<style>
+.totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));width:44px;height:44px;
+  border-radius:50%;border:1px solid var(--rule-2);background:var(--surface);color:var(--accent);
+  box-shadow:var(--shadow);display:grid;place-items:center;cursor:pointer;padding:0;z-index:50;
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{border-color:var(--accent)}
+.totop:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.totop svg{width:20px;height:20px}
+@media (prefers-reduced-motion: reduce){.totop{transition:none}}
+</style>
+<button type="button" class="totop" id="totop" aria-label="Back to top">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  function upd(){ b.classList.toggle("on", window.scrollY > 600); }
+  window.addEventListener("scroll", upd, {passive:true});
+  b.addEventListener("click", function(){
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({top:0, behavior: still ? "auto" : "smooth"});
+  });
+  upd();
+})();
+</script>
 </body>
 </html>
