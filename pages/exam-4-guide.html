@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Unit 4 Exam — study guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* ================= CLAUDE PALETTE ================= */
+:root{
+  --bg:#FAF9F5;
+  --surface:#FFFFFF;
+  --surface-2:#F0EEE6;
+  --surface-3:#E9E6DC;
+  --ink:#191917;
+  --ink-2:#3D3D3A;
+  --muted:#73706A;
+  --rule:#E3E0D7;
+  --rule-2:#D5D1C5;
+  --accent:#C15F3C;
+  --accent-hi:#D97757;
+  --accent-soft:#F7EDE7;
+  --accent-rule:#E8C7B6;
+  --shadow:0 1px 2px rgba(25,25,23,.04), 0 12px 28px -22px rgba(25,25,23,.30);
+
+  --src-book:#4A6D8C; --src-book-soft:#EAF0F5;
+  --src-lab:#5F7A55;  --src-lab-soft:#EDF2EA;
+  --src-lec:#B0703A;  --src-lec-soft:#F8EFE4;
+
+  --alert:#A34A2C; --alert-soft:#FAEDE7; --alert-rule:#E3C0AE;
+
+  --base-a:#B0603A; --base-t:#4F7A6B; --base-g:#7A5B8C; --base-c:#4A6D8C;
+  --chip-ink:#FFFFFF;
+  --coding:#DCC08A; --template:#C5C1B4;
+
+  --f-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-body:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#262624;
+    --surface:#30302E;
+    --surface-2:#2A2A28;
+    --surface-3:#3A3A37;
+    --ink:#F5F4EE;
+    --ink-2:#E3E1D9;
+    --muted:#A29E93;
+    --rule:#403F3B;
+    --rule-2:#4C4B46;
+    --accent:#E0906F;
+    --accent-hi:#D97757;
+    --accent-soft:#3A2B23;
+    --accent-rule:#5C4335;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 28px -22px rgba(0,0,0,.9);
+    --src-book:#8FB3CE; --src-book-soft:#233039;
+    --src-lab:#95B389;  --src-lab-soft:#26302A;
+    --src-lec:#DDA774;  --src-lec-soft:#352A1F;
+    --alert:#E09578; --alert-soft:#3A2620; --alert-rule:#5E3B2C;
+    --base-a:#DC9A70; --base-t:#7FBBA8; --base-g:#B79BD0; --base-c:#8FB3CE;
+    --chip-ink:#262624;
+    --coding:#B99A5E; --template:#6E6C65;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#262624; --surface:#30302E; --surface-2:#2A2A28; --surface-3:#3A3A37;
+  --ink:#F5F4EE; --ink-2:#E3E1D9; --muted:#A29E93; --rule:#403F3B; --rule-2:#4C4B46;
+  --accent:#E0906F; --accent-hi:#D97757; --accent-soft:#3A2B23; --accent-rule:#5C4335;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 28px -22px rgba(0,0,0,.9);
+  --src-book:#8FB3CE; --src-book-soft:#233039;
+  --src-lab:#95B389;  --src-lab-soft:#26302A;
+  --src-lec:#DDA774;  --src-lec-soft:#352A1F;
+  --alert:#E09578; --alert-soft:#3A2620; --alert-rule:#5E3B2C;
+  --base-a:#DC9A70; --base-t:#7FBBA8; --base-g:#B79BD0; --base-c:#8FB3CE;
+  --chip-ink:#262624;
+  --coding:#B99A5E; --template:#6E6C65;
+}
+
+*{box-sizing:border-box}
+/* `hidden` has to beat every author `display:` below it. The browser's own
+   [hidden]{display:none} is a user-agent rule, so any rule in this sheet that
+   sets display outranks it -- .qcard.fc{display:flex} did exactly that, and
+   flashcards stayed on screen through every filter the exam pages have. */
+[hidden]{display:none!important}
+/* Text selection: white ground, black ink, in both themes. Only colour and
+   background-color are honoured on ::selection, so nothing else is set here. */
+::selection{background:#FFFFFF;color:#000000}
+::-moz-selection{background:#FFFFFF;color:#000000}
+body{margin:0;background:var(--bg);color:var(--ink-2);font-family:var(--f-body);font-size:1rem;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px 100px}
+
+/* ================= MASTHEAD ================= */
+.masthead{padding:48px 0 24px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 13px}
+.masthead h1{font-family:var(--f-display);font-weight:600;font-size:2.55rem;line-height:1.08;letter-spacing:-.02em;margin:0 0 13px;color:var(--ink);text-wrap:balance}
+.masthead .lede{margin:0;max-width:62ch;color:var(--muted);font-size:1.06rem;line-height:1.55}
+.meta-row{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:18px;font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.meta-row span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--accent-hi);flex:none}
+
+/* ================= GLANCE ================= */
+.glance{display:grid;gap:11px;margin:24px 0 30px}
+@media(min-width:760px){.glance{grid-template-columns:1.45fr 1fr}}
+.gcard.deadlines{border-color:var(--accent-rule)}
+.gcard.deadlines .gh{color:var(--accent)}
+ol.dl{list-style:none;margin:0;padding:0;max-width:none}
+ol.dl li{display:grid;grid-template-columns:1fr;gap:2px;padding:10px 0;border-bottom:1px dashed var(--rule);margin:0;font-size:.875rem}
+@media(min-width:480px){ol.dl li{grid-template-columns:112px minmax(0,1fr);gap:14px;align-items:baseline}}
+ol.dl li:first-child{padding-top:0}
+ol.dl li:last-child{border-bottom:0;padding-bottom:0}
+ol.dl .when{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);line-height:1.4}
+ol.dl .when .t{font-size:.72rem;opacity:.8}
+ol.dl li.hard .when{color:var(--accent)}
+ol.dl .what{line-height:1.5}
+ol.dl .fine{color:var(--muted);font-size:.8125rem}
+.gcard{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:16px 18px}
+.gcard .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.gcard ul{margin:0;padding-left:1.05em;font-size:.875rem}
+.gcard li{margin-bottom:5px}
+.gcard.due{border-color:var(--accent-rule);background:var(--accent-soft)}
+.gcard.due .gh{color:var(--accent)}
+.gcard .when{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+
+/* ================= TABS ================= */
+.tabbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:stretch;
+  background:var(--bg);
+  border-bottom:1px solid var(--rule);
+  margin:0 0 26px;
+  padding-top:6px;
+}
+.tabbar .inner{flex:1;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.backlink{
+  display:inline-flex;align-items:center;gap:8px;flex:none;text-decoration:none;
+  font:inherit;font-size:.9375rem;font-weight:500;color:var(--muted);
+  padding:12px 15px 13px 2px;margin-right:10px;
+  border-right:1px solid var(--rule);
+  transition:color .15s;
+}
+.backlink:hover,.backlink:focus-visible{color:var(--accent)}
+.backlink .arw{font-family:var(--f-mono);font-size:1.05rem;line-height:1;transition:transform .15s}
+.backlink:hover .arw{transform:translateX(-2px)}
+@media(max-width:520px){
+  .backlink{padding-right:11px;margin-right:8px}
+  .backlink .btxt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+.tabbar .inner::-webkit-scrollbar{display:none}
+.tabbar button{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font:inherit;font-size:.9375rem;font-weight:500;color:var(--muted);
+  padding:12px 15px 13px;border-bottom:2px solid transparent;
+  white-space:nowrap;border-radius:8px 8px 0 0;transition:color .15s,background .15s;
+}
+.tabbar button:hover{color:var(--ink);background:var(--surface-2)}
+.tabbar button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent-hi);background:none}
+.tabbar button .tnum{font-family:var(--f-mono);font-size:.74rem;opacity:.7;margin-right:7px}
+[role="tabpanel"][hidden]{display:none}
+
+/* jump chips */
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:0;list-style:none;max-width:none}
+.jump li{margin:0}
+.jump a{
+  display:inline-block;text-decoration:none;font-family:var(--f-mono);font-size:.78rem;
+  color:var(--muted);border:1px solid var(--rule);background:var(--surface);
+  padding:4px 10px;border-radius:99px;
+}
+.jump a:hover{border-color:var(--accent-rule);color:var(--accent);background:var(--accent-soft)}
+
+/* panel intro */
+.pintro{margin:0 0 22px}
+.pintro h2{font-family:var(--f-display);font-weight:600;font-size:1.9rem;line-height:1.15;letter-spacing:-.015em;margin:0 0 8px;color:var(--ink);text-wrap:balance}
+.pintro p{margin:0;color:var(--muted);max-width:66ch;font-size:.9688rem}
+
+/* ================= SOURCE TAGS ================= */
+.srcs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;padding:0;list-style:none;max-width:none}
+.srcs li{margin:0}
+.src{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid var(--rule);background:var(--surface-2);color:var(--muted);
+}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.src.book{color:var(--src-book);background:var(--src-book-soft);border-color:transparent}
+.src.lab{color:var(--src-lab);background:var(--src-lab-soft);border-color:transparent}
+.src.lec{color:var(--src-lec);background:var(--src-lec-soft);border-color:transparent}
+
+/* ================= CARDS ================= */
+.sect,.topic,.card,.exam,.plan,.vocab{
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--shadow);scroll-margin-top:76px;margin:0 0 14px;
+}
+.sect,.card{padding:26px 28px 28px}
+.exam{padding:22px 24px}
+.topic,.plan,.vocab{overflow:hidden}
+.sect-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.sect h2,.topic h2,.card>h2{font-family:var(--f-display);font-weight:600;font-size:1.5rem;letter-spacing:-.012em;line-height:1.2;margin:0;color:var(--ink);text-wrap:balance}
+.card>h2{margin-bottom:14px}
+.sect h2 .n{font-family:var(--f-mono);font-size:.6em;color:var(--accent);margin-right:.55em;letter-spacing:0}
+.pages{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
+.cnum,.tnum{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 5px}
+.topic>header{padding:19px 24px 15px;border-bottom:1px solid var(--rule)}
+.topic h2 span{font-family:var(--f-body);font-size:.8125rem;font-weight:500;color:var(--muted);letter-spacing:.03em;margin-left:10px;white-space:nowrap}
+.exam h3,.card h3,.sect h3,.topic h3{
+  font-family:var(--f-body);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin:24px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--rule);
+}
+.exam>h3:first-child{margin-top:0;font-family:var(--f-display);font-size:1.15rem;font-weight:600;letter-spacing:-.008em;text-transform:none;color:var(--ink);border-bottom:0;padding-bottom:0;margin-bottom:10px}
+.sect h3:first-of-type,.card h3:first-of-type{margin-top:0}
+p{max-width:70ch}
+.sect p,.card p{margin:0 0 13px}
+.exam p{margin:0 0 10px}
+ul,ol{margin:0 0 13px;padding-left:1.25em;max-width:70ch}
+li{margin-bottom:6px}
+li:last-child{margin-bottom:0}
+.exam ul,.exam ol{font-size:.9375rem;margin-bottom:0}
+strong{font-weight:600;color:var(--ink)}
+
+/* ================= INNER BLOCKS ================= */
+.bigidea{margin:15px 0 20px;padding:14px 17px;border-left:3px solid var(--accent-hi);background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:1.05rem;line-height:1.5;font-family:var(--f-display);color:var(--ink)}
+.bigidea b{font-family:var(--f-body);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;font-weight:600}
+ul.outline{margin:0;padding-left:1.15em;max-width:70ch}
+ul.outline>li{margin-bottom:9px}
+ul.outline ul{margin:7px 0 0;padding-left:1.1em}
+ul.outline ul li{margin-bottom:5px;color:var(--muted)}
+ul.outline ul li strong{color:var(--ink)}
+dl.terms{margin:0;display:grid;gap:0;max-width:72ch}
+dl.terms div{padding:11px 0;border-bottom:1px dashed var(--rule);display:grid;grid-template-columns:1fr;gap:2px}
+dl.terms div:last-child{border-bottom:0}
+@media (min-width:640px){dl.terms div{grid-template-columns:196px minmax(0,1fr);gap:18px;align-items:baseline}}
+dl.terms dt{font-weight:600;color:var(--ink)}
+dl.terms dd{margin:0;color:var(--muted)}
+
+.note,.box{margin:17px 0 0;padding:14px 17px;border-radius:10px;border:1px solid var(--rule);background:var(--surface-2);font-size:.9375rem;max-width:72ch}
+.note.tip,.box.tip{background:var(--accent-soft);border-color:var(--accent-rule)}
+.box.warn{background:var(--alert-soft);border-color:var(--alert-rule)}
+.note .tag,.box .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.note.tip .tag,.box.tip .tag{color:var(--accent)}
+.box.warn .tag{color:var(--alert)}
+.note p,.box p{margin:0 0 8px;max-width:none}
+.note p:last-child,.box p:last-child{margin-bottom:0}
+.note ul,.box ul{margin:0;padding-left:1.15em}
+
+blockquote{margin:17px 0;padding:15px 20px;border-left:3px solid var(--accent-hi);background:var(--accent-soft);border-radius:0 10px 10px 0;font-family:var(--f-display);font-size:1.04rem;font-style:italic;line-height:1.5;max-width:70ch;color:var(--ink)}
+blockquote p{margin:0 0 7px;max-width:none}
+blockquote p:last-child{margin:0}
+blockquote cite{display:block;margin-top:8px;font-family:var(--f-body);font-style:normal;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+code,.seq{font-family:var(--f-mono);font-size:.9em}
+.seq{background:var(--surface-3);padding:2px 6px;border-radius:5px;letter-spacing:.04em;color:var(--ink)}
+
+.tablewrap,.tw{overflow-x:auto;margin:0 0 12px}
+table,.pairtable{border-collapse:collapse;width:100%;font-size:.9375rem}
+.pairtable{max-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.71rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.k{font-weight:600;white-space:nowrap;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-family:var(--f-mono);font-size:.8rem;font-weight:500;color:var(--chip-ink);margin-right:6px}
+.chip.a{background:var(--base-a)}.chip.t{background:var(--base-t)}
+.chip.g{background:var(--base-g)}.chip.c{background:var(--base-c)}
+
+figure{margin:19px 0 0;padding:19px;background:var(--surface-2);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
+figure svg{display:block;width:100%;max-width:100%;height:auto;color:var(--ink)}
+.scroller svg{min-width:640px}
+figcaption{margin-top:13px;font-size:.875rem;color:var(--muted);max-width:66ch}
+/* figure.shot -- a screenshot of the book's own figure, not a redrawn SVG. White
+   plate behind it because the textbook art assumes a white page; without it the
+   art floats on the dark surface and its thin black leader lines disappear. */
+figure.shot{padding:0;overflow:hidden}
+figure.shot img{display:block;width:100%;height:auto;background:#fff}
+figure.shot figcaption{margin:0;padding:13px 19px;max-width:none}
+
+details.reveal{margin-top:11px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);overflow:hidden}
+details.reveal summary{cursor:pointer;padding:12px 15px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start;color:var(--ink)}
+details.reveal summary::-webkit-details-marker{display:none}
+details.reveal summary::after{content:"show";margin-left:auto;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;padding-top:3px}
+details.reveal[open] summary::after{content:"hide"}
+details.reveal summary:hover{background:var(--surface-2)}
+details.reveal .body{padding:0 15px 14px;color:var(--muted);font-size:.9375rem}
+details.reveal .body p{margin:0 0 8px}
+details.reveal .body p:last-child{margin:0}
+.qnum{font-family:var(--f-mono);font-size:.82rem;color:var(--accent);flex:none;min-width:2.1em}
+
+.reviewed{margin-top:22px;padding-top:15px;border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px;font-size:.875rem;color:var(--muted)}
+.reviewed input{width:17px;height:17px;accent-color:var(--accent-hi);cursor:pointer}
+.reviewed label{cursor:pointer;user-select:none}
+
+.essay-grid{display:grid;gap:13px}
+@media (min-width:780px){.essay-grid{grid-template-columns:repeat(3,1fr)}}
+.essay{border:1px solid var(--rule);border-radius:10px;padding:17px;background:var(--surface-2)}
+.essay .kind{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.essay h4{margin:0 0 8px;font-family:var(--f-display);font-size:1.1rem;font-weight:600;line-height:1.25;color:var(--ink)}
+.essay ul{margin:0;padding-left:1.1em;font-size:.875rem;color:var(--muted)}
+
+/* board work */
+.plan h2{margin:0;padding:14px 18px;font-family:var(--f-mono);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--rule);background:var(--surface-2)}
+.plan ol{margin:0;padding:14px 18px 14px 34px;display:flex;flex-direction:column;gap:7px;font-size:.9375rem;max-width:none}
+.plan li{color:var(--muted)}
+.plan .foot{margin:0;padding:12px 18px 16px;font-size:.875rem;color:var(--muted);border-top:1px solid var(--rule);max-width:none}
+.block{padding:20px 24px 22px}
+.block + .block{border-top:1px dashed var(--rule)}
+.blabel{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:center;gap:9px}
+.blabel.draw{color:var(--muted)}
+.blabel.write{color:var(--accent)}
+.blabel i{width:20px;height:1px;background:currentColor;display:block;flex:none}
+.sketch{margin:0 0 12px;color:var(--muted);font-size:.9375rem;max-width:68ch}
+.sketch b{color:var(--ink)}
+ul.labels{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px;max-width:none}
+ul.labels li{font-family:var(--f-mono);font-size:.8rem;border:1px dashed var(--rule-2);border-radius:6px;padding:4px 9px;color:var(--ink);background:var(--surface-2);margin:0}
+ul.labels li.n{border-color:transparent;background:var(--src-lab-soft);color:var(--src-lab)}
+ul.labels li.l{border-color:transparent;background:var(--src-lec-soft);color:var(--src-lec)}
+.copy{background:var(--accent-soft);border-left:3px solid var(--accent-hi);border-radius:0 10px 10px 0;padding:14px 18px}
+.copy ul,.copy ol{margin:0;padding-left:1.25em}
+.copy li{margin-bottom:6px;font-size:.9375rem}
+.copy .sub{margin:11px 0 6px;font-weight:600;font-size:.9375rem;max-width:none;color:var(--ink)}
+.copy .sub:first-child{margin-top:0}
+.copy table{max-width:470px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:13px;height:13px;border-radius:4px;border:1px solid var(--rule-2);background:var(--surface-2);display:block;flex:none}
+.legend i.n{border-color:transparent;background:var(--src-lab)}
+.legend i.l{border-color:transparent;background:var(--src-lec)}
+.vocab{padding:18px 20px;border-color:var(--rule);background:var(--surface-2)}
+.vocab h2{margin:0 0 4px;font-family:var(--f-display);font-size:1.22rem;font-weight:600;color:var(--ink)}
+.vocab p{margin:0 0 14px;font-size:.9rem;color:var(--muted);max-width:64ch}
+.vocab .grp{margin-bottom:12px}
+.vocab .grp:last-child{margin-bottom:0}
+.vocab .gname{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.vocab ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;max-width:none}
+.vocab li{font-family:var(--f-mono);font-size:.78rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:3px 8px;margin:0}
+.flag{display:inline-block;font-family:var(--f-mono);font-size:.67rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-rule);background:var(--accent-soft);border-radius:5px;padding:1px 6px;margin-right:7px}
+.tagL{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 6px;margin-right:7px;vertical-align:1px;white-space:nowrap}
+
+.fix{display:grid;gap:0}
+.fix div{display:grid;grid-template-columns:1fr;gap:2px;padding:9px 0;border-bottom:1px dashed var(--rule)}
+@media(min-width:620px){.fix div{grid-template-columns:206px minmax(0,1fr);gap:16px;align-items:baseline}}
+.fix div:last-child{border-bottom:0}
+.fix .bad{font-family:var(--f-mono);font-size:.84rem;color:var(--muted);text-decoration:line-through}
+.fix .good{font-size:.9375rem}
+
+/* empty slot */
+.slot{border:1px dashed var(--accent-rule);background:var(--accent-soft);border-radius:12px;padding:24px 26px;margin:0 0 14px}
+.slot h3{margin:0 0 9px;font-family:var(--f-display);font-size:1.28rem;font-weight:600;text-transform:none;letter-spacing:-.008em;color:var(--ink);border-bottom:0;padding-bottom:0}
+.slot p{margin:0 0 9px;color:var(--muted);font-size:.9375rem}
+.slot p:last-child{margin:0}
+
+/* conflict table -- the Point cell holds a phrase, not a label, so it must wrap.
+   `td.k` sets white-space:nowrap for the short-key tables; unset here or a long
+   point forces the table many times wider than the page. min-width keeps it a
+   table on a laptop and lets .tw scroll it on a phone. */
+.conflict{min-width:660px}
+.conflict td:first-child{font-weight:600;color:var(--ink);white-space:normal;width:24%}
+.conflict td[colspan]{white-space:normal}
+.conflict td:last-child,.conflict th:last-child{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
+.verdict{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:2px 7px;white-space:nowrap;display:inline-block}
+
+/* cram list */
+.cram{counter-reset:cram;list-style:none;padding:0;margin:0;max-width:none}
+.cram li{counter-increment:cram;position:relative;padding:12px 0 12px 42px;border-bottom:1px dashed var(--rule);margin:0}
+.cram li:last-child{border-bottom:0}
+.cram li::before{
+  content:counter(cram,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:var(--f-mono);font-size:.78rem;color:var(--accent);
+}
+
+footer.foot{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule);color:var(--muted);font-size:.875rem}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<style>
+
+/* ============ VERTICAL RHYTHM FOR GENERATED BLOCKS ============
+   The skeleton's components were written for a hand-authored page: each block
+   was placed deliberately, and most of them lean on the NEXT element's top
+   margin rather than carrying a bottom margin of their own. figure, .note and
+   .box are all `margin-bottom:0`; ul.outline, dl.terms and ul.labels are
+   `margin:0` on both sides.
+
+   A generated page stacks those blocks in whatever order the content file
+   dictates, so a figure followed by an outline, or a note followed by a term
+   list, renders flush. Give every direct child of a card its own bottom
+   margin. Adjacent sibling margins collapse, so this never doubles up against
+   an element that already carries a top margin. ============ */
+.sect > *, .card > *{margin-bottom:18px}
+.sect > *:last-child, .card > *:last-child{margin-bottom:0}
+
+.sect > .sect-head{margin-bottom:8px}
+.sect > p, .card > p{margin-bottom:14px}
+.sect > figure, .card > figure{margin-top:20px}
+.sect > ul.outline, .card > ul.outline{margin-top:16px}
+.sect > dl.terms, .card > dl.terms{margin-top:2px}
+.sect > .tw, .card > .tw{margin-top:14px}
+.sect > .note, .sect > .box, .card > .note, .card > .box{margin-top:17px}
+.sect > blockquote, .card > blockquote{margin-top:18px}
+.sect > .fix, .card > .fix{margin-top:4px}
+.sect > .srcs, .card > .srcs{margin-top:0;margin-bottom:14px}
+.sect > .essay-grid, .card > .essay-grid{margin-top:4px}
+.sect > ol.cram, .card > ol.cram{margin-top:4px}
+
+/* consecutive reveals keep the skeleton's tighter 11px step */
+.sect > details.reveal, .card > details.reveal{margin-top:11px;margin-bottom:0}
+.sect > details.reveal:last-child, .card > details.reveal:last-child{margin-bottom:0}
+
+/* .plan is a panel in its own right, not a .sect, so its .block children need
+   the same rhythm treatment. .plan itself is overflow:hidden, so margins on the
+   first and last child must collapse to nothing. */
+.block > *{margin-bottom:16px}
+.block > *:last-child{margin-bottom:0}
+.block > p.blabel{margin-top:0;margin-bottom:10px}
+.block > p.sketch{margin-top:0;margin-bottom:14px}
+.block > ul.labels{margin-top:2px;margin-bottom:0}
+.block > .copy{margin-top:0}
+.block > .note, .block > .box{margin-top:16px}
+.block > .plan{margin-top:16px;margin-bottom:0}
+.block > figure{margin-top:16px}
+.block > .tw{margin-top:14px}
+.block > .reviewed{margin-top:20px}
+.plan > .block + .block{margin-top:0}
+
+/* board work: DRAW / LABELS / WRITE need a clear break between each stanza */
+.sect > p.blabel{margin-top:24px;margin-bottom:10px}
+.sect > .sect-head + p.blabel{margin-top:16px}
+.sect > p.sketch{margin-top:0;margin-bottom:14px}
+.sect > ul.labels{margin-top:2px;margin-bottom:16px}
+.sect > .copy{margin-top:2px;margin-bottom:16px}
+
+/* an h3 keeps its 24px lead-in unless it genuinely opens the card --
+   the skeleton zeroes the FIRST h3, which on a generated page is usually
+   preceded by a figure or an outline rather than being the first element */
+.sect > h3:first-of-type, .card > h3:first-of-type{margin-top:26px}
+.sect > h3, .card > h3{margin-top:26px}
+.sect > h3:first-child, .card > h3:first-child{margin-top:0}
+.card > h2 + h3{margin-top:14px}
+
+/* uracil: the skeleton defined chips for A/T/G/C only. U replaces T in RNA
+   and pairs with A the same way, so it inherits T's colour. */
+.chip.u{background:var(--base-t)}
+
+/* ============ ADDED FOR THE GENERATED SITE ============
+   Showcase cards, status chips and conflict/synthesis bits.
+   Tokens only — never hard-code a colour here. ============ */
+.statusrow{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none;max-width:none}
+.statusrow li{margin:0}
+.chip-s{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.68rem;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;
+  border:1px solid var(--rule);background:var(--surface-2);color:var(--muted)}
+.chip-s::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip-s.done{color:var(--src-lab);background:var(--src-lab-soft);border-color:transparent}
+.chip-s.pending{color:var(--src-lec);background:var(--src-lec-soft);border-color:transparent}
+.chip-s.stale{color:var(--alert);background:var(--alert-soft);border-color:var(--alert-rule)}
+.chip-s.empty{color:var(--muted);background:var(--surface-2)}
+
+.wkgrid{display:grid;gap:13px;margin:0 0 30px}
+@media(min-width:720px){.wkgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.wkgrid{grid-template-columns:repeat(3,1fr)}}
+.wk{background:var(--surface);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);
+  padding:17px 19px 18px;display:flex;flex-direction:column;gap:9px}
+.wk.is-now{border-color:var(--accent-rule);background:var(--accent-soft)}
+.wk.is-past{opacity:.72}
+.wk .wkhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.wk .wknum{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.wk .wkdates{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.wk h3{margin:0;font-family:var(--f-display);font-size:1.12rem;font-weight:600;line-height:1.25;
+  color:var(--ink);letter-spacing:-.008em;text-wrap:balance}
+.wk h3 a{text-decoration:none;color:inherit}
+.wk h3 a:hover{color:var(--accent)}
+.wk .wklab{font-size:.84rem;color:var(--muted);margin:0}
+.wk .wkexam{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--alert);background:var(--alert-soft);border:1px solid var(--alert-rule);
+  border-radius:5px;padding:1px 7px;align-self:flex-start}
+.wk .wknow{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+.bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;margin:9px 0 7px}
+.bar i{display:block;height:100%;background:var(--accent-hi);border-radius:99px}
+.pstat{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.pstat b{color:var(--ink);font-weight:500}
+
+.oq{margin:0 0 14px;padding:18px 20px;background:var(--surface);border:1px solid var(--rule);
+  border-radius:12px;box-shadow:var(--shadow)}
+.oq h3{margin:0 0 8px;font-family:var(--f-display);font-size:1.15rem;font-weight:600;color:var(--ink);
+  text-transform:none;letter-spacing:-.008em;border-bottom:0;padding-bottom:0}
+.oq .affects{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent);margin:9px 0 0}
+.oq p{font-size:.9375rem;margin:0 0 9px}
+.oq p:last-child{margin:0}
+.oq ul{font-size:.9375rem}
+.countdown{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);white-space:nowrap}
+.countdown.past{color:var(--muted)}
+.flags{margin:0 0 24px;padding:0;list-style:none;max-width:none;display:grid;gap:9px}
+.flags li{margin:0;padding:12px 15px;border-radius:10px;border:1px solid var(--alert-rule);
+  background:var(--alert-soft);font-size:.9063rem;color:var(--ink-2)}
+.flags li::before{content:"Flag";display:block;font-family:var(--f-mono);font-size:.67rem;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--alert);margin-bottom:4px}
+.srcnote{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.slides{font-family:var(--f-mono);font-size:.78rem;color:var(--src-lec);white-space:nowrap}
+
+/* ============ EXAM PRACTICE PAGES ============
+   The exam-N.html pages and the exam link a week page carries in its tab bar.
+   Tokens only — never hard-code a colour here. ============ */
+.examlink{border-right:0;border-left:1px solid var(--rule);margin:0 0 0 10px;padding:12px 2px 13px 15px}
+.examlink:hover .arw{transform:translateX(2px)}
+.tabbar a.xtab{display:inline-flex;align-items:center;text-decoration:none;font:inherit;font-size:.9375rem;
+  font-weight:500;color:var(--muted);padding:12px 15px 13px;border-bottom:2px solid transparent;
+  white-space:nowrap;border-radius:8px 8px 0 0;transition:color .15s,background .15s}
+.tabbar a.xtab:hover{color:var(--ink);background:var(--surface-2)}
+.tabbar a.xtab.is-current{color:var(--accent);border-bottom-color:var(--accent-hi);background:none}
+.tabbar a.xtab .xst{font-family:var(--f-mono);font-size:.68rem;opacity:.7;margin-left:7px}
+ul.scope{margin:0;padding:0;list-style:none;max-width:none}
+ul.scope li{padding:8px 0;border-bottom:1px dashed var(--rule);margin:0;font-size:.875rem;line-height:1.45}
+ul.scope li:first-child{padding-top:0}
+ul.scope li:last-child{border-bottom:0;padding-bottom:0}
+ul.scope .fine{color:var(--muted);font-size:.8125rem}
+
+.qcontrols{display:flex;flex-direction:column;gap:11px;padding:18px 22px}
+.qrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.qrow .ql{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);min-width:58px}
+.qhint{font-size:.8125rem;color:var(--muted);margin-left:6px}
+.qbtn{appearance:none;cursor:pointer;font:inherit;font-family:var(--f-mono);font-size:.78rem;color:var(--muted);
+  border:1px solid var(--rule);background:var(--surface);padding:4px 11px;border-radius:99px;
+  transition:color .15s,background .15s,border-color .15s}
+.qbtn:hover{border-color:var(--accent-rule);color:var(--accent);background:var(--accent-soft)}
+.qbtn.is-on{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-rule)}
+.qbtn.primary{color:var(--chip-ink);background:var(--accent-hi);border-color:transparent}
+.qbtn.primary:hover{background:var(--accent);color:var(--chip-ink)}
+.qbtn[disabled]{opacity:.45;cursor:default}
+.qbtn.qforget{border-style:dashed}
+.qbtn .qcn{margin-left:6px;opacity:.6;font-size:.7rem}
+.qbtn.is-on .qcn{opacity:.85}
+.qstatus{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);margin-left:6px}
+.qstatus b{color:var(--ink);font-weight:500}
+.qmock{padding:18px 22px}
+.qmock .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.qmock p{margin:0 0 12px;font-size:.9375rem;max-width:72ch}
+
+.tgroup{margin:0 0 28px}
+.tgroup>h2{font-family:var(--f-display);font-weight:600;font-size:1.42rem;letter-spacing:-.012em;line-height:1.2;margin:0 0 4px;color:var(--ink)}
+.tgroup>.tnote{margin:0 0 14px;color:var(--muted);font-size:.875rem;max-width:none}
+.qcard{background:var(--surface);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);
+  padding:18px 22px 16px;margin:0 0 12px;scroll-margin-top:76px}
+.qcard.is-right{border-color:var(--src-lab)}
+.qcard.is-wrong{border-color:var(--alert)}
+.qhead{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 9px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.qhead .qn{color:var(--accent);font-size:.84rem}
+.qhead .qtopic{letter-spacing:.06em;text-transform:uppercase}
+.qhead .srcs{margin:0 0 0 auto}
+.qhead .qmulti{color:var(--src-lec);background:var(--src-lec-soft);border-radius:5px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
+.qhead .qmulti.sa{color:var(--src-lab);background:var(--src-lab-soft)}
+.qhead .qmulti.fc{color:var(--src-book);background:var(--src-book-soft)}
+.qhead .qsaid{color:var(--alert);background:var(--alert-soft);border:1px solid var(--alert-rule);border-radius:5px;padding:0 6px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem;font-weight:700;cursor:help}
+.qhead .qlevel{color:var(--muted);border:1px dashed var(--rule);border-radius:5px;padding:0 6px;letter-spacing:.06em;text-transform:uppercase;font-size:.66rem}
+.why .saidq{margin-top:.5em;font-size:.9em}
+.qcard .stem{margin:0 0 12px;color:var(--ink);font-size:1rem;line-height:1.5;max-width:76ch}
+/* Flashcards. The front is the whole card until it is flipped, so the prompt
+   is set larger and the card is given a minimum height -- otherwise a deck
+   jumps around as each two-word front is revealed into a four-line back. */
+.qcard.fc{min-height:150px;display:flex;flex-direction:column}
+.qcard.fc .stem{font-family:var(--f-display);font-size:1.22rem;line-height:1.35;margin:4px 0 14px;max-width:60ch}
+.qcard.fc .qact{margin-top:auto}
+.qcard.fc .why{background:var(--surface);border-color:var(--accent-hi)}
+.qcard.fc .why p{font-size:1rem;line-height:1.55}
+ul.opts{list-style:none;margin:0;padding:0;max-width:none;display:grid;gap:6px}
+ul.opts li{margin:0;position:relative}
+ul.opts input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+ul.opts label{display:flex;gap:11px;align-items:flex-start;cursor:pointer;padding:9px 12px;border:1px solid var(--rule);
+  border-radius:9px;background:var(--surface-2);font-size:.9375rem;line-height:1.45;color:var(--ink-2);
+  transition:border-color .12s,background .12s}
+ul.opts label:hover{border-color:var(--accent-rule)}
+ul.opts input:checked+label{border-color:var(--accent-hi);background:var(--accent-soft);color:var(--ink)}
+ul.opts input:focus-visible+label{outline:2px solid var(--accent-hi);outline-offset:2px}
+ul.opts .ol{font-family:var(--f-mono);font-size:.78rem;color:var(--accent);flex:none;min-width:1.2em;padding-top:2px}
+ul.opts li.is-key label{border-color:var(--src-lab);background:var(--src-lab-soft);color:var(--ink)}
+ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
+.qcard.is-locked ul.opts label{cursor:default}
+.qact{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 0}
+.qres{font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.qres.ok{color:var(--src-lab)}
+.qres.bad{color:var(--alert)}
+.qcard .why{margin:12px 0 0;padding:12px 15px;border-radius:10px;border:1px solid var(--rule);background:var(--surface-2);font-size:.9375rem;max-width:76ch}
+.qcard .why .tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+.qcard .why p{margin:0 0 8px;max-width:none}
+.qcard .why p:last-child{margin:0}
+.qcard .why .grader{color:var(--muted);font-size:.875rem}
+.qcard textarea{width:100%;font:inherit;font-size:.9375rem;line-height:1.5;color:var(--ink);background:var(--surface-2);
+  border:1px solid var(--rule);border-radius:9px;padding:10px 12px;resize:vertical;min-height:84px;display:block}
+.qcard textarea:focus{outline:2px solid var(--accent-hi);outline-offset:2px}
+.is-mock .qcheck,.is-mock .qshow{display:none}
+.qscore{padding:20px 24px}
+.qscore .gh{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.qscore .big{font-family:var(--f-display);font-size:2.2rem;font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1;margin:0 0 14px}
+.qscore .big small{font-size:.9rem;color:var(--muted);font-family:var(--f-mono);font-weight:400;letter-spacing:0;margin-left:10px}
+.qscore table{max-width:520px}
+.qscore p{margin:10px 0 0;font-size:.9375rem}
+.wk.is-shell{opacity:.8}
+</style>
+<style>
+.card.guide{margin-top:16px}
+.card.guide .gh2{font-family:var(--f-serif,serif);font-size:1.25rem;margin:0 0 10px}
+.card.guide p,.card.guide li{line-height:1.55}
+.card.guide ul,.card.guide ol{padding-left:1.3em;margin:6px 0 10px}
+.card.guide .tw{margin:8px 0 12px}
+.card.guide td.k{white-space:normal}
+.card.guide td,.card.guide th{padding:7px 8px;overflow-wrap:break-word;hyphens:auto}
+@media (max-width:520px){.card.guide{padding:20px 16px}}
+.card.guide table{width:100%}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">BIO 5 &middot; Human Biology &middot; Fall 2026 &middot; Whalen</p>
+    <h1>Unit 4 Exam &mdash; study guide</h1>
+    <p class="lede">A one-page overview of every system on the exam. &#9733; marks what Whalen said is on it. <a href="exam-4.html">Practice questions &rarr;</a></p>
+    <div class="meta-row"></div>
+  </header>
+
+  <div class="tabbar">
+    <a class="backlink" href="index.html" title="Back to all seventeen weeks"><span class="arw" aria-hidden="true">&larr;</span><span class="btxt">All weeks</span></a>
+    <div class="inner" aria-label="Exams">
+      <a class="xtab" href="exam-1.html" aria-current="false">Unit 1<span class="xst">387 Qs</span></a>
+      <a class="xtab" href="exam-2.html" aria-current="false">Unit 2<span class="xst">348 Qs</span></a>
+      <a class="xtab" href="exam-3.html" aria-current="false">Unit 3<span class="xst">439 Qs</span></a>
+      <a class="xtab is-current" href="exam-4.html" aria-current="page">Unit 4<span class="xst">760 Qs</span></a>
+      <a class="xtab" href="exam-final.html" aria-current="false">Final<span class="xst">shell</span></a>
+    </div>
+  </div>
+
+<div class="card guide">
+<p><strong>Mon 11/30, lab period · 200 pts · 53 questions (51–53 short answer) + extra credit #54 (2 pts) · 882-E Scantron, pencil</strong></p>
+<p>Covers Ch. 11–14, 16–18 and Labs 12–16. Not Ch. 22–24 (those are on the final). ★ = Whalen said this specific thing is on the exam.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">The big picture</h2>
+<p>This unit is the body&#x27;s <strong>delivery and maintenance systems</strong>. Blood is the delivery fluid. The heart and vessels move it. The lymphatic and immune systems guard it. The lungs load oxygen into it and unload CO₂. The kidneys clean it and set its water, salt and pH. Reproduction and development make the next body. Most exam questions test one of two things: <strong>the order things happen in</strong> (a pathway, a sequence of steps) or <strong>which structure or hormone does which job</strong>.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">1. Blood (Ch. 11, Lab 12)</h2>
+<p><strong>What it is.</strong> Blood is a <strong>connective tissue</strong>: cells floating in a liquid matrix.</p>
+<ul><li>★ <strong>55% plasma</strong> (water, proteins, nutrients, wastes, salts) and <strong>45% formed elements</strong> (the cells).</li><li>All the formed elements come from stem cells in red bone marrow.</li></ul>
+<p><strong>★ What each cell type does:</strong></p>
+<div class="tw"><table><thead><tr><th>Cell</th><th>Job</th></tr></thead><tbody><tr><td class="k"><strong>Red blood cells</strong></td><td>Carry O₂ on hemoglobin; no nucleus; live about 120 days</td></tr><tr><td class="k"><strong>White blood cells</strong></td><td>Defense. Neutrophils and monocytes/macrophages eat invaders; eosinophils fight parasites; basophils release histamine; lymphocytes (B and T) make the targeted response</td></tr><tr><td class="k"><strong>Platelets</strong></td><td>Cell fragments that plug leaks and start clotting</td></tr></tbody></table></div>
+<p><strong>★ Blood types.</strong> Your type is the <strong>antigens</strong> on your red cells (A, B, Rh). Your <strong>plasma carries antibodies</strong> against the antigens you lack. A transfusion is safe only if the recipient&#x27;s antibodies don&#x27;t attack the donor&#x27;s cells. Type O has no A or B antigens; type AB has no anti-A or anti-B antibodies.</p>
+<p><strong>★ How a clot forms.</strong> Three stages:</p>
+<ol><li>The vessel constricts.</li><li>Platelets stick and form a plug.</li><li>A fibrin clot forms:<ul><li>The platelets and the damaged tissue make <strong>prothrombin activator</strong>.</li><li>It turns <strong>prothrombin</strong> into <strong>thrombin</strong>.</li><li>Thrombin turns <strong>fibrinogen</strong> into <strong>fibrin</strong> strands, which trap cells into a clot.</li></ul></li></ol>
+<p>The liver needs <strong>vitamin K</strong> to make clotting factors.</p>
+<p><strong>★ Anemia and leukemia.</strong> Anemia means too little oxygen-carrying capacity.</p>
+<div class="tw"><table><thead><tr><th>Type</th><th>Cause</th><th>Treatment</th></tr></thead><tbody><tr><td class="k">Iron-deficiency</td><td>Too little iron, so too little hemoglobin</td><td>Iron</td></tr><tr><td class="k">Pernicious</td><td>No B₁₂ absorbed (missing intrinsic factor)</td><td>B₁₂ shots</td></tr><tr><td class="k">Hemolytic, including sickle-cell</td><td>Red cells burst</td><td>Depends on the cause</td></tr></tbody></table></div>
+<p><strong>Leukemia</strong> is cancer of the white cells: huge numbers of them, but they don&#x27;t work.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">2. Heart and circulation (Ch. 12, Lab 13)</h2>
+<p><strong>The heart is two pumps side by side.</strong></p>
+<ul><li>The <strong>right</strong> side sends blood to the lungs (the pulmonary circuit).</li><li>The <strong>left</strong> side sends it to the body (the systemic circuit).</li></ul>
+<p><strong>Blood&#x27;s path through the heart:</strong> body → right atrium → tricuspid valve → right ventricle → pulmonary valve → lungs → left atrium → ★ <strong>mitral valve</strong> → left ventricle → aortic valve → aorta → body.</p>
+<ul><li>★ The mitral valve has <strong>three names</strong>: <strong>left AV, bicuspid, mitral</strong>.</li></ul>
+<p><strong>★ The first branches off the aorta are the left and right coronary arteries.</strong> They feed the heart muscle itself, which is easy to forget.</p>
+<p><strong>Vessels.</strong> Blood runs arteries → arterioles → capillaries → venules → veins.</p>
+<ul><li>Arteries are thick and elastic to take the pressure.</li><li>Capillaries are one cell thick for exchange.</li><li>Veins have valves and return blood to the heart.</li></ul>
+<p><strong>Blood pressure</strong> is written systolic over diastolic: the pressure while the ventricles contract over the pressure while they relax.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">3. Lymphatic and immune systems (Ch. 12–13, Lab 12)</h2>
+<p><strong>★ The lymphatic system</strong> does three jobs:</p>
+<ul><li>Returns fluid that leaks out of capillaries back to the blood.</li><li>Carries absorbed fats.</li><li>Filters lymph through the lymph nodes.</li></ul>
+<p><strong>★ The spleen</strong> is the largest collection of lymphatic tissue, and it cleans the <strong>blood</strong> (old red cells, platelets, microbes). The <strong>thymus</strong> is where T cells mature.</p>
+<p><strong>Three lines of defense:</strong></p>
+<ol><li><strong>Barriers</strong>, such as skin and mucus.</li><li><strong>Nonspecific defenses</strong>: phagocytes, inflammation, fever, interferons, complement.</li><li><strong>The adaptive response</strong>: targeted and remembered.</li></ol>
+<p><strong>★ The 8 steps of the adaptive response:</strong></p>
+<ol><li><strong>Threat</strong>: a foreign cell or molecule gets in.</li><li><strong>Detection</strong>: a macrophage eats it.</li><li><strong>Alert</strong>: the macrophage displays the antigen and activates a <strong>helper T cell</strong>.</li><li><strong>Alarm</strong>: the helper T cell activates both B cells and cytotoxic T cells.</li><li><strong>Building specific defenses</strong>: B cells become <strong>plasma cells</strong>, which make antibodies, and T cells become <strong>cytotoxic T cells</strong>.</li><li><strong>Defense</strong>: antibodies take out free antigens, and cytotoxic T cells burst infected cells.</li><li><strong>Continued surveillance</strong>: <strong>memory cells</strong> stay behind.</li><li><strong>Withdrawal</strong>: <strong>suppressor T cells</strong> shut the response down.</li></ol>
+<p><strong>★ Know the table of adaptive-response cells:</strong></p>
+<div class="tw"><table><thead><tr><th>Cell</th><th>Job</th></tr></thead><tbody><tr><td class="k">Helper T</td><td>The &quot;on&quot; switch: activates B and cytotoxic T cells</td></tr><tr><td class="k">Cytotoxic T</td><td>Kills infected cells and cancer cells</td></tr><tr><td class="k">Suppressor T</td><td>The &quot;off&quot; switch: ends the response</td></tr><tr><td class="k">B cell → plasma cell</td><td>Makes antibodies</td></tr><tr><td class="k">Memory cells</td><td>A fast response the next time</td></tr></tbody></table></div>
+<p><strong>★ Autoimmune disorders.</strong> The immune system attacks &quot;self.&quot;</p>
+<ul><li><strong>Organ-specific</strong>, usually from T cells: Hashimoto&#x27;s (thyroid) and type 1 diabetes (pancreas).</li><li><strong>Body-wide</strong>, usually from B-cell antibodies: lupus.</li><li><strong>Molecular mimicry</strong>: antibodies against strep can also hit the heart valves, causing rheumatic fever.</li></ul>
+<p><strong>Active vs. passive immunity.</strong> Active immunity is your own memory cells and lasts. Passive immunity is borrowed antibodies, which work right away but fade in weeks.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">4. Respiratory system (Ch. 14, Lab 14)</h2>
+<p><strong>Air route:</strong> nose → pharynx → larynx → trachea → bronchi → bronchioles → <strong>alveoli</strong>, where gas exchange happens.</p>
+<p><strong>Breathing.</strong></p>
+<ul><li>The diaphragm contracts, the chest gets bigger, pressure in the lungs drops and air rushes in.</li><li>A quiet exhale is passive: the lungs recoil like a stretched rubber band.</li></ul>
+<p><strong>★ Spirometry (learn the chart; skip the numbers):</strong></p>
+<div class="tw"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td class="k">Tidal volume (TV)</td><td>A normal breath</td></tr><tr><td class="k">Inspiratory reserve volume (IRV)</td><td>Extra you can breathe in beyond a normal breath</td></tr><tr><td class="k">Expiratory reserve volume (ERV)</td><td>Extra you can force out beyond a normal breath</td></tr><tr><td class="k"><strong>Vital capacity (VC)</strong></td><td><strong>IRV + TV + ERV</strong></td></tr><tr><td class="k">Residual volume (RV)</td><td>Air that never leaves the lungs</td></tr><tr><td class="k"><strong>Total lung capacity (TLC)</strong></td><td><strong>VC + RV</strong></td></tr></tbody></table></div>
+<p><strong>★ Respiratory and circulatory systems working together.</strong></p>
+<ul><li>Gases diffuse from high to low concentration across the alveolus–capillary wall.</li><li>O₂ moves into the blood; CO₂ moves out of it.</li></ul>
+<p><strong>★ How gases ride in the blood (these percentages will be tested):</strong></p>
+<div class="tw"><table><thead><tr><th>Gas</th><th>How it travels</th></tr></thead><tbody><tr><td class="k">O₂</td><td>About <strong>98.5% on hemoglobin</strong>, 1.5% dissolved in plasma</td></tr><tr><td class="k">CO₂</td><td>About <strong>70% as bicarbonate</strong>, about 20–23% on hemoglobin, 7–10% dissolved</td></tr></tbody></table></div>
+<p><strong>★ Breathing control (&quot;a special question&quot;).</strong></p>
+<ul><li>The <strong>medulla</strong> sets the rhythm and senses <strong>CO₂</strong> (as acid).</li><li>The <strong>aortic and carotid bodies</strong> sense <strong>O₂</strong>, but only when it&#x27;s dangerously low.</li><li><strong>The medulla does not sense oxygen.</strong></li></ul>
+</div>
+<div class="card guide">
+<h2 class="gh2">5. Urinary system (Ch. 16, Lab 15)</h2>
+<p><strong>What it&#x27;s for.</strong> The kidneys clean the blood and control its volume, pressure, salt and pH.</p>
+<ul><li>They also make <strong>erythropoietin</strong>, which tells the bone marrow to make red blood cells, and activate vitamin D.</li><li>The lungs, skin and gut eliminate some wastes too, but the muscles don&#x27;t.</li></ul>
+<p><strong>★ Urine&#x27;s path:</strong> kidney → ureter → bladder → urethra. Inside the kidney: nephrons → collecting duct → <strong>minor calyx → major calyx → renal pelvis</strong> → ureter, which exits at the <strong>renal hilum</strong>.</p>
+<p><strong>★ The nephron, in order:</strong> Bowman&#x27;s (glomerular) capsule → proximal convoluted tubule → descending loop of Henle → ascending loop → distal convoluted tubule → collecting duct, which several nephrons share.</p>
+<p><strong>★ Three processes:</strong></p>
+<div class="tw"><table><thead><tr><th>Process</th><th>Direction</th><th>What happens</th></tr></thead><tbody><tr><td class="k"><strong>Filtration</strong></td><td>Glomerulus → capsule</td><td>Blood pressure pushes water and small solutes out. Cells and proteins stay in the blood.</td></tr><tr><td class="k"><strong>Reabsorption</strong></td><td>Filtrate → blood</td><td>Useful things go back: all the glucose, most of the sodium and water. About 99% of filtrate is returned, mostly in the proximal tubule.</td></tr><tr><td class="k"><strong>Secretion</strong></td><td>Blood → filtrate</td><td>Wastes, excess ions and drugs are added to the urine.</td></tr></tbody></table></div>
+<p><strong>Hormones that set the dial:</strong></p>
+<ul><li><strong>ADH</strong> makes the collecting duct hold on to water. Alcohol blocks ADH.</li><li><strong>Aldosterone</strong> makes the kidneys reabsorb more sodium.</li><li><strong>ANH (ANP)</strong> lowers blood volume and pressure.</li></ul>
+<p><strong>Urination.</strong> A stretched bladder triggers a reflex: the internal sphincter (smooth muscle, involuntary) relaxes. You control the external sphincter (skeletal muscle).</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">6. Reproduction and development (Ch. 17–18, Lab 16)</h2>
+<p><strong>The gonads (testes and ovaries)</strong> make both the <strong>gametes</strong> and the <strong>sex hormones</strong>.</p>
+<p><strong>★ The hormones:</strong></p>
+<div class="tw"><table><thead><tr><th>Hormone</th><th>Where it comes from</th><th>What it does</th></tr></thead><tbody><tr><td class="k"><strong>GnRH</strong></td><td>Hypothalamus</td><td>Tells the pituitary to release FSH and LH</td></tr><tr><td class="k"><strong>FSH</strong></td><td>Anterior pituitary</td><td>Grows follicles; in males, supports sperm production</td></tr><tr><td class="k"><strong>LH</strong></td><td>Anterior pituitary</td><td>Its surge <strong>triggers ovulation</strong> and forms the corpus luteum; in males, makes the interstitial (Leydig) cells release <strong>testosterone</strong></td></tr><tr><td class="k"><strong>Estrogen</strong></td><td>Follicle</td><td>Builds the uterine lining; high estrogen sets off the LH surge</td></tr><tr><td class="k"><strong>Progesterone</strong></td><td>Corpus luteum</td><td>Keeps the lining ready for an embryo</td></tr><tr><td class="k"><strong>hCG</strong></td><td>The blastocyst (the early embryo)</td><td>Keeps the corpus luteum alive so the lining isn&#x27;t shed; it&#x27;s what pregnancy tests detect</td></tr></tbody></table></div>
+<p>Testosterone and inhibin act as brakes: high testosterone shuts off GnRH, and inhibin lowers FSH.</p>
+<p><strong>The cycles run in parallel:</strong></p>
+<div class="tw"><table><thead><tr><th>Ovarian cycle</th><th>Uterine cycle</th></tr></thead><tbody><tr><td class="k">Follicular phase: a follicle grows (driven by FSH)</td><td>Menstrual (days 0–5), then proliferative: the lining rebuilds (days 5–14)</td></tr><tr><td class="k">Ovulation (about day 14, from the LH surge)</td><td></td></tr><tr><td class="k">Luteal phase: the corpus luteum makes progesterone</td><td>Secretory: the lining thickens and secretes (days 14–28)</td></tr></tbody></table></div>
+<p><strong>Sperm path:</strong> seminiferous tubules (where sperm are made) → epididymis (where they mature) → vas deferens → urethra.</p>
+<p><strong>★ The prenatal periods (fertilization to birth, about 38 weeks):</strong></p>
+<div class="tw"><table><thead><tr><th>Period</th><th>When</th><th>What happens</th></tr></thead><tbody><tr><td class="k"><strong>Pre-embryonic</strong></td><td>Weeks 1–2</td><td>Fertilization in the oviduct → zygote → cleavage → morula (a solid ball) → blastocyst (hollow) → implantation in the endometrium (about day 6)</td></tr><tr><td class="k"><strong>Embryonic</strong></td><td>Weeks 3–8</td><td>Gastrulation forms the 3 germ layers; every organ forms; this is when most birth defects start</td></tr><tr><td class="k"><strong>Fetal</strong></td><td>Week 9 to birth</td><td>Growth</td></tr></tbody></table></div>
+<p><strong>Infancy</strong> comes after birth, in the postnatal period.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">7. Lab practical — models and slides</h2>
+<p>Several questions at each station. <strong>Label every model without the key.</strong></p>
+<ul><li><strong>Heart model</strong> and the <strong>blood typing card</strong></li><li>★ <strong>Respiratory board model</strong> (&quot;It&#x27;s on next week&#x27;s exam. I saw it.&quot;)</li><li><strong>Urinary board</strong>: kidney, nephron and glomerulus together</li><li><strong>Male and female reproductive models</strong></li><li><strong>Slides from the last three weeks</strong>: blood smear, lung, kidney (renal corpuscle), testis (seminiferous tubules), ovary (Graafian follicle)</li></ul>
+<p>Whalen said he&#x27;d name the models again on Wed 11/25.</p>
+</div>
+<div class="card guide">
+<h2 class="gh2">Extra credit #54 (2 pts)</h2>
+<p>Describe one way one system helps regulate something else in the body, naming the chemicals and what each does. It comes from the board work for Labs 14 and 15.</p>
+<p>A ready answer: <strong>low blood pressure → the kidney releases renin → angiotensin II forms → aldosterone is released → the kidneys reabsorb more sodium, water follows → blood volume and pressure rise.</strong> ADH and aquaporins, or erythropoietin and red-blood-cell production, also work.</p>
+</div>
+  <footer class="foot">
+    <p>BIO 5 &middot; Unit 4 Exam &middot; generated by build/exams.py from exams/unit-4/study-guide.md. Do not hand-edit this file.</p>
+  </footer>
+
+</div>
+<script>
+
+</script>
+
+<style>
+.totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));width:44px;height:44px;
+  border-radius:50%;border:1px solid var(--rule-2);background:var(--surface);color:var(--accent);
+  box-shadow:var(--shadow);display:grid;place-items:center;cursor:pointer;padding:0;z-index:50;
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{border-color:var(--accent)}
+.totop:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.totop svg{width:20px;height:20px}
+@media (prefers-reduced-motion: reduce){.totop{transition:none}}
+</style>
+<button type="button" class="totop" id="totop" aria-label="Back to top">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  function upd(){ b.classList.toggle("on", window.scrollY > 600); }
+  window.addEventListener("scroll", upd, {passive:true});
+  b.addEventListener("click", function(){
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({top:0, behavior: still ? "auto" : "smooth"});
+  });
+  upd();
+})();
+</script>
+</body>
+</html>
