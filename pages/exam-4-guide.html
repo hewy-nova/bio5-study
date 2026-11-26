@@ -609,17 +609,19 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 @media (max-width:520px){.card.guide{padding:20px 16px}}
 .card.guide table{width:100%}
 .card.guide figure.shot{margin:12px 0 16px}
+</style>
+<style>
 .drill{border:1px solid var(--rule-2);border-radius:10px;background:var(--surface-2);padding:12px 14px;margin:12px 0 14px}
 .drill .dtitle{font-weight:600;margin-bottom:6px}
-.drill .dhint{margin:0 0 6px;color:var(--muted);font-size:.9rem}
-.card.guide ol.dsteps{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.drill .dhint{margin:0 0 6px!important;line-height:1.5!important;color:var(--muted);font-size:.9rem}
+.drill ol.dsteps{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 .drill .dstep{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:var(--ink);
   background:var(--surface);border:1px solid var(--rule-2);border-radius:8px;padding:8px 10px;cursor:pointer;line-height:1.4}
 .drill .dstep.on{border-color:var(--accent)}
 .drill .dn{flex:none;width:1.6em;height:1.6em;border-radius:50%;border:1px solid var(--rule-2);display:grid;place-items:center;
   font-size:.85rem;color:var(--accent)}
 .drill .dstep.on .dn{border-color:var(--accent);background:var(--accent-soft)}
-.drill .dtext p{line-height:2.3;margin:0 0 6px}
+.drill .dtext p,.drill .dhint{line-height:2.3;margin:0 0 6px}
 .drill .dbank{display:flex;flex-wrap:wrap;gap:6px;padding:8px;margin:0 0 10px;min-height:44px;border:1px dashed var(--rule-2);border-radius:8px;background:var(--surface)}
 .drill .dchip{font:inherit;font-size:.92rem;color:var(--ink);background:var(--surface-2);border:1px solid var(--rule-2);border-radius:6px;
   padding:3px 9px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;line-height:1.4}
