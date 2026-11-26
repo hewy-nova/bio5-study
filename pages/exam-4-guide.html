@@ -609,6 +609,27 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 @media (max-width:520px){.card.guide{padding:20px 16px}}
 .card.guide table{width:100%}
 .card.guide figure.shot{margin:12px 0 16px}
+.drill{border:1px solid var(--rule-2);border-radius:10px;background:var(--surface-2);padding:12px 14px;margin:12px 0 14px}
+.drill .dtitle{font-weight:600;margin-bottom:6px}
+.drill .dhint{margin:0 0 6px;color:var(--muted);font-size:.9rem}
+.card.guide ol.dsteps{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.drill .dstep{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:var(--ink);
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:8px;padding:8px 10px;cursor:pointer;line-height:1.4}
+.drill .dstep.on{border-color:var(--accent)}
+.drill .dn{flex:none;width:1.6em;height:1.6em;border-radius:50%;border:1px solid var(--rule-2);display:grid;place-items:center;
+  font-size:.85rem;color:var(--accent)}
+.drill .dstep.on .dn{border-color:var(--accent);background:var(--accent-soft)}
+.drill .dtext p{line-height:2.1;margin:0 0 6px}
+.drill .dblank{font:inherit;color:var(--ink);background:var(--surface);border:0;border-bottom:2px solid var(--rule-2);
+  padding:0 4px;max-width:100%;border-radius:0}
+.drill .dblank:focus{outline:none;border-bottom-color:var(--accent)}
+.drill .is-right{border-color:var(--src-lab)!important;background:var(--src-lab-soft)}
+.drill .is-wrong{border-color:var(--alert)!important;background:var(--alert-soft)}
+.drill .dbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.drill .dbtn{font:inherit;font-size:.9rem;border:1px solid var(--rule-2);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:5px 12px;cursor:pointer}
+.drill .dcheck{border-color:var(--accent);color:var(--accent)}
+.drill .dscore{font-size:.9rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -771,9 +792,20 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 <div class="card guide">
 <h2 class="gh2">Extra credit #54 (2 pts)</h2>
 <p>Describe one way one system helps regulate something else in the body, naming the chemicals and what each does. It comes from the board work for Labs 14 and 15.</p>
-<p>Pick one and write it as a chain. Each names the system, the chemicals and what each one does. To drill them, pick <strong>Extra credit #54</strong> in the practice questions&#x27; topic filter: put the steps in order, then fill in the blanks.</p>
+<p>Pick one and write it as a chain. Each names the system, the chemicals and what each one does.</p>
 <ol><li><strong>Urinary system raises blood pressure (RAAS).</strong> Low blood pressure → <strong>juxtaglomerular cells</strong> in the kidney release <strong>renin</strong> → renin turns <strong>angiotensinogen</strong> into <strong>angiotensin I</strong> → <strong>ACE</strong> in the lungs turns it into <strong>angiotensin II</strong>, which <strong>constricts blood vessels</strong> and triggers <strong>aldosterone</strong> from the adrenal cortex → the kidneys <strong>reabsorb more sodium, water follows</strong> → blood volume and pressure rise.</li><li><strong>Endocrine and urinary systems save water (ADH).</strong> Dehydration (blood too concentrated) → the <strong>hypothalamus</strong> makes you thirsty and the <strong>posterior pituitary</strong> releases <strong>ADH</strong> → ADH adds <strong>aquaporins</strong> to the collecting ducts → <strong>more water is reabsorbed</strong> into the blood → blood volume and pressure rise; urine is less and more concentrated. (Alcohol blocks ADH, so you lose water.)</li><li><strong>Heart lowers blood pressure (ANP).</strong> High blood volume <strong>stretches the right atrium</strong> → the heart releases <strong>atrial natriuretic peptide (ANP)</strong> → ANP <strong>reduces sodium reabsorption</strong> in the kidney and <strong>blocks renin and aldosterone</strong> → water stays in the filtrate → <strong>more, dilute urine</strong> → blood volume and pressure fall.</li><li><strong>Respiratory system controls blood pH.</strong> CO₂ builds up in the blood → it combines with water to make <strong>carbonic acid</strong>, which releases <strong>H⁺</strong> (blood pH drops) → <strong>chemoreceptors in the medulla</strong> detect it → breathing gets <strong>faster and deeper</strong> → more <strong>CO₂ is breathed out</strong> → H⁺ falls and blood pH returns to normal.</li></ol>
 <p>Erythropoietin also works: low oxygen → the kidneys release <strong>EPO</strong> → red bone marrow makes <strong>more red blood cells</strong> → the blood carries more oxygen.</p>
+<p><strong>Practice.</strong> Put each chain in order, then fill in its blanks. Check tells you what you got right; Reset shuffles it again.</p>
+<div class="drill" data-kind="order"><div class="dtitle">RAAS — put the steps in order</div><p class="dhint">Tap the steps in order.</p><ol class="dsteps"><li><button type="button" class="dstep" data-i="0"><b class="dn"></b>Blood pressure drops</button></li><li><button type="button" class="dstep" data-i="1"><b class="dn"></b>Juxtaglomerular cells release renin</button></li><li><button type="button" class="dstep" data-i="2"><b class="dn"></b>Renin turns angiotensinogen into angiotensin I</button></li><li><button type="button" class="dstep" data-i="3"><b class="dn"></b>ACE in the lungs makes angiotensin II</button></li><li><button type="button" class="dstep" data-i="4"><b class="dn"></b>Angiotensin II constricts blood vessels and triggers aldosterone</button></li><li><button type="button" class="dstep" data-i="5"><b class="dn"></b>The kidneys reabsorb sodium, and water follows</button></li><li><button type="button" class="dstep" data-i="6"><b class="dn"></b>Blood volume and pressure rise</button></li></ol><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="blank"><div class="dtitle">RAAS — fill in the blanks</div><div class="dtext"><p>Low blood pressure → <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="juxtaglomerular" size="18"> cells release <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="renin" size="8"> → it turns <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="angiotensinogen" size="18"> into <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="angiotensin I" size="16"> → <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="ACE" size="6"> in the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="lungs" size="8"> makes <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="angiotensin II" size="17"> → it <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="constricts" size="13"> blood vessels and triggers <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="aldosterone" size="14"> from the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="adrenal cortex" size="17"> → the kidneys reabsorb <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="sodium/Na+" size="9">, and <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="water" size="8"> follows → blood pressure <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="rises/goes up/increases" size="8">.</p></div><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="order"><div class="dtitle">ADH — put the steps in order</div><p class="dhint">Tap the steps in order.</p><ol class="dsteps"><li><button type="button" class="dstep" data-i="0"><b class="dn"></b>The blood becomes too concentrated (dehydration)</button></li><li><button type="button" class="dstep" data-i="1"><b class="dn"></b>The hypothalamus senses it and makes you thirsty</button></li><li><button type="button" class="dstep" data-i="2"><b class="dn"></b>The posterior pituitary releases ADH</button></li><li><button type="button" class="dstep" data-i="3"><b class="dn"></b>ADH adds aquaporins to the collecting ducts</button></li><li><button type="button" class="dstep" data-i="4"><b class="dn"></b>More water is reabsorbed into the blood</button></li><li><button type="button" class="dstep" data-i="5"><b class="dn"></b>Blood volume and pressure rise; urine is less and more concentrated</button></li></ol><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="blank"><div class="dtitle">ADH — fill in the blanks</div><div class="dtext"><p>Dehydration → the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="hypothalamus" size="15"> makes you thirsty and the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="posterior pituitary" size="22"> releases <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="ADH/antidiuretic hormone" size="6"> → ADH adds <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="aquaporins" size="13"> to the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="collecting ducts/collecting duct" size="19"> → more <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="water" size="8"> is reabsorbed → urine is <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="less/smaller" size="7"> and more <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="concentrated" size="15">. <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="Alcohol/ethanol" size="10"> blocks ADH, so you lose water.</p></div><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="order"><div class="dtitle">ANP — put the steps in order</div><p class="dhint">Tap the steps in order.</p><ol class="dsteps"><li><button type="button" class="dstep" data-i="0"><b class="dn"></b>Blood volume is high</button></li><li><button type="button" class="dstep" data-i="1"><b class="dn"></b>The right atrium is stretched</button></li><li><button type="button" class="dstep" data-i="2"><b class="dn"></b>The heart releases ANP</button></li><li><button type="button" class="dstep" data-i="3"><b class="dn"></b>ANP reduces sodium reabsorption and blocks renin and aldosterone</button></li><li><button type="button" class="dstep" data-i="4"><b class="dn"></b>Water stays in the filtrate: more, dilute urine</button></li><li><button type="button" class="dstep" data-i="5"><b class="dn"></b>Blood volume and pressure fall</button></li></ol><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="blank"><div class="dtitle">ANP — fill in the blanks</div><div class="dtext"><p>High blood volume stretches the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="right atrium" size="15"> → it releases <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="ANP/atrial natriuretic peptide" size="6"> → this <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="reduces/decreases/lowers" size="10"> sodium reabsorption and blocks <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="renin" size="8"> and <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="aldosterone" size="14"> → more, <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="dilute" size="9"> urine → blood pressure <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="falls/drops/decreases/goes down" size="8">.</p></div><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="order"><div class="dtitle">Breathing and pH — put the steps in order</div><p class="dhint">Tap the steps in order.</p><ol class="dsteps"><li><button type="button" class="dstep" data-i="0"><b class="dn"></b>CO₂ builds up in the blood</button></li><li><button type="button" class="dstep" data-i="1"><b class="dn"></b>CO₂ and water make carbonic acid, which releases H⁺</button></li><li><button type="button" class="dstep" data-i="2"><b class="dn"></b>Blood pH drops</button></li><li><button type="button" class="dstep" data-i="3"><b class="dn"></b>Chemoreceptors in the medulla detect it</button></li><li><button type="button" class="dstep" data-i="4"><b class="dn"></b>Breathing gets faster and deeper</button></li><li><button type="button" class="dstep" data-i="5"><b class="dn"></b>More CO₂ is breathed out</button></li><li><button type="button" class="dstep" data-i="6"><b class="dn"></b>H⁺ falls and pH returns to normal</button></li></ol><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="blank"><div class="dtitle">Breathing and pH — fill in the blanks</div><div class="dtext"><p>CO₂ builds up → it combines with water to make <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="carbonic acid" size="16"> → this releases <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="H+/hydrogen/hydrogen ions/protons" size="6">, so pH <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="drops/falls/decreases" size="8"> → chemoreceptors in the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="medulla/medulla oblongata" size="10"> detect it → breathing gets <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="faster" size="9"> and <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="deeper" size="9"> → more <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="CO2/carbon dioxide" size="6"> is breathed out → pH returns to normal.</p></div><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="order"><div class="dtitle">EPO — put the steps in order</div><p class="dhint">Tap the steps in order.</p><ol class="dsteps"><li><button type="button" class="dstep" data-i="0"><b class="dn"></b>Blood oxygen is low</button></li><li><button type="button" class="dstep" data-i="1"><b class="dn"></b>The kidneys release EPO</button></li><li><button type="button" class="dstep" data-i="2"><b class="dn"></b>EPO reaches the red bone marrow</button></li><li><button type="button" class="dstep" data-i="3"><b class="dn"></b>The marrow makes more red blood cells</button></li><li><button type="button" class="dstep" data-i="4"><b class="dn"></b>The blood carries more oxygen</button></li></ol><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
+<div class="drill" data-kind="blank"><div class="dtitle">EPO — fill in the blanks</div><div class="dtext"><p>Low blood <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="oxygen/O2" size="9"> → the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="kidneys" size="10"> release <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="EPO/erythropoietin" size="6"> → the <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="red bone marrow/bone marrow" size="18"> makes more <input type="text" class="dblank" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="blank" data-a="red blood cells/RBCs/erythrocytes" size="18"> → the blood carries more oxygen.</p></div><div class="dbar"><button type="button" class="dbtn dcheck">Check</button><button type="button" class="dbtn dshow">Show answer</button><button type="button" class="dbtn dreset">Reset</button><span class="dscore" aria-live="polite"></span></div></div>
 </div>
   <footer class="foot">
     <p>BIO 5 &middot; Unit 4 Exam &middot; generated by build/exams.py from exams/unit-4/study-guide.md. Do not hand-edit this file.</p>
@@ -781,6 +813,70 @@ ul.opts li.is-miss label{border-color:var(--alert);background:var(--alert-soft)}
 
 </div>
 <script>
+
+(function(){
+  function all(r, q){ return Array.prototype.slice.call(r.querySelectorAll(q)); }
+  function norm(x){ return x.toLowerCase().replace(/₂/g,"2").replace(/⁺/g,"+").replace(/[^a-z0-9+]/g,""); }
+  function shuffle(ol){
+    var li = all(ol, "li");
+    for (var k = 0; k < 6; k++) {
+      for (var i = li.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = li[i]; li[i] = li[j]; li[j] = t; }
+      if (li.some(function(l, n){ return +l.firstChild.dataset.i !== n; })) break;
+    }
+    li.forEach(function(l){ ol.appendChild(l); });
+  }
+  all(document, ".drill").forEach(function(d){
+    var score = d.querySelector(".dscore"), ol = d.querySelector(".dsteps"), picked = [];
+    function clear(){
+      score.textContent = ""; d.classList.remove("done");
+      all(d, ".is-right,.is-wrong").forEach(function(e){ e.classList.remove("is-right", "is-wrong"); });
+    }
+    if (ol) {
+      shuffle(ol);
+      all(d, ".dstep").forEach(function(b){
+        b.addEventListener("click", function(){
+          if (d.classList.contains("done")) return;
+          var at = picked.indexOf(b);
+          if (at >= 0) { picked.splice(at, 1); } else { picked.push(b); }
+          all(d, ".dstep").forEach(function(x){ var n = picked.indexOf(x); x.querySelector(".dn").textContent = n < 0 ? "" : n + 1; x.classList.toggle("on", n >= 0); });
+        });
+      });
+    }
+    d.querySelector(".dcheck").addEventListener("click", function(){
+      clear();
+      var ok = 0, n = 0;
+      if (ol) {
+        var steps = all(d, ".dstep"); n = steps.length;
+        if (picked.length < n) { score.textContent = "Pick all " + n + " steps first."; return; }
+        picked.forEach(function(b, k){ var r = +b.dataset.i === k; if (r) ok++; b.classList.add(r ? "is-right" : "is-wrong"); });
+      } else {
+        all(d, ".dblank").forEach(function(inp){
+          n++;
+          var r = inp.dataset.a.split("/").some(function(a){ return norm(a) === norm(inp.value); });
+          if (r) ok++; inp.classList.add(r ? "is-right" : "is-wrong");
+        });
+      }
+      score.textContent = ok + " / " + n + (ok === n ? " — got it" : "");
+    });
+    d.querySelector(".dshow").addEventListener("click", function(){
+      clear();
+      if (ol) {
+        var steps = all(d, ".dstep").sort(function(a, b){ return a.dataset.i - b.dataset.i; });
+        picked = steps;
+        steps.forEach(function(b, k){ ol.appendChild(b.parentNode); b.querySelector(".dn").textContent = k + 1; b.classList.add("on"); });
+      } else {
+        all(d, ".dblank").forEach(function(inp){ inp.value = inp.dataset.a.split("/")[0]; });
+      }
+      d.classList.add("done"); score.textContent = "Answer shown — Reset and try it cold.";
+    });
+    d.querySelector(".dreset").addEventListener("click", function(){
+      clear(); picked = [];
+      all(d, ".dblank").forEach(function(inp){ inp.value = ""; });
+      all(d, ".dstep").forEach(function(x){ x.querySelector(".dn").textContent = ""; x.classList.remove("on"); });
+      if (ol) shuffle(ol);
+    });
+  });
+})();
 
 </script>
 
